@@ -32,19 +32,12 @@ add_header X-Frame-Options "SAMEORIGIN";
 The values available are:
 
 | X-Frame-Option | Description |
-| :---------- |:-------------------------------------------- --------------------------------|
+| :---------- |:---------------------------------------------------------------------------------------------------|
 | DENY | The page cannot be displayed in a frame, regardless of the site attempting to do so.|
 | SAMEORIGIN | The page can only be displayed in a frame on the same origin as the page itself.|
 | ALLOW-FROM | The page can only be displayed in a frame on the specified origin.|
 
-DENY: The page cannot be displayed in a frame, regardless of the site attempting to do so.
-
-SAMEORIGIN The page can only be displayed in a frame on the same origin as the page itself.
-
-ALLOW-FROM uri The page can only be displayed in a frame on the specified origin.
-
 I opted for SAMEORIGIN, meaning only allow framing from the same domain.
-
 
 ## HTTP STRICT TRANSPORT SECURITY
 
@@ -76,15 +69,19 @@ The token mode=block will prevent browser (IE8+ and Webkit browsers) to render p
 
 ## CONTENT SECURITY POLICY
 
-Content Security Policy (often abbreviated as CSP) is a computer security standard introduced to prevent cross-site scripting (XSS), clickjacking and other code injection attacks resulting from execution of malicious content in the trusted web page context. CSP is built upon the principle of Same-origin Policy. A simple example of a CSP / Same Origin Policy would be that code from https://mybank.com should only have access to https://mybank.com's data, and not https://evil.com.
+Content Security Policy (often abbreviated as CSP) is a computer security standard introduced to prevent cross-site scripting (XSS), clickjacking and other code injection attacks resulting from execution of malicious content in the trusted web page context.
+
+CSP is built upon the principle of Same-origin Policy.
+
+A simple example of a CSP would be that code from https://mybank.com should only have access to https://mybank.com's data, and not https://evil.com.
 
 CSP's are typically built on a least privilege model, whereby you tell browsers what sites are allowed to run say for example java script, or load external images.
 
 In my case I only needed to allow three sites:
 
-https://fonts.gstatic.com (to allow my google fonts to be rendered on this page)
-https://www.google-analytics.com (for google anayltics)
-https://avatars.githubusercontent.com (for the small avatar images used to render my github profile).
+* https://fonts.gstatic.com (to allow my google fonts to be rendered on this page)
+* https://www.google-analytics.com (for google anayltics)
+* https://avatars.githubusercontent.com (for the small avatar images used to render my github profile).
 
 Here is my complete entry:
 
@@ -132,6 +129,6 @@ Public-Key-Pins: pin-sha256=xXEEzomG2N6hdat2mh4ihZyg5HTtY/ooyW6ZiDVOpBg=; \
 
 The result on securityheaders.io was an A+ 'hall of fame' rating.
 
-![Multi-Tenancy](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/halloffame.png)
+![halloffame](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/halloffame.png)
 
 One further interesting point. I took a look at quite a few major banking / tech sites, as was shocked to see how vulnerable they were.
