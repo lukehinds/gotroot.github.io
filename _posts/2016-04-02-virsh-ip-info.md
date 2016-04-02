@@ -21,6 +21,7 @@ virsh domifaddr <domain> [interface] [–full] [–source lease|agent]
  vnet3      52:54:00:20:70:3d    ipv4         192.168.105.240/16
 ~~~
 
+
 ~~~
  # virsh domifaddr fedora_vm --full
  Name       MAC address          Protocol     Address
@@ -29,4 +30,4 @@ virsh domifaddr <domain> [interface] [–full] [–source lease|agent]
  vnet1      52:54:00:b1:70:19    ipv4         192.168.105.201/16
  vnet1      52:54:00:b1:70:19    ipv6         2001:db8:ca2:2:1::bd/128
  vnet3      52:54:00:20:70:3d    ipv4         192.168.105.240/16
- ~~~
+~~~
