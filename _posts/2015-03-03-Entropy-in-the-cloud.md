@@ -126,4 +126,4 @@ http://blog-ftweedal.rhcloud.com/2014/05/more-entropy-with-haveged/
 
 ## UPDATE
 
-I noted that red hat now support virtio RNG as of RHEL 7, so implementation is made a lot easier for users. More info can be found [here] on the red hat site.
+I noted that red hat now support virtio RNG as of RHEL 7, so implementation is made a lot easier for users. More info can be found [here](http://rhelblog.redhat.com/2015/03/09/red-hat-enterprise-linux-virtual-machines-access-to-random-numbers-made-easy) on the red hat site.
