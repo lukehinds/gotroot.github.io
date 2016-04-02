@@ -19,7 +19,7 @@ I don't want to go into giving a full blown overview of ansible, but to cast som
 
 THE QUICK AND DIRTY ON ANSIBLE
 
-[ansible](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/ansible.png)
+![ansible](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/ansible.png)
 
 Image source http://sysadmincasts.com
 
