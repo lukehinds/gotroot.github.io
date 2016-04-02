@@ -2,6 +2,7 @@
 layout: post
 title: securityheaders.io Hall of Fame
 subtitle: Or how I fixed the holes in my own site
+bigimg: /img/header_tech.jpg
 ---
 
 **Note: This post was made on my old site, nfv.space. I have since then moved to markdown / Jekyll on github.io**

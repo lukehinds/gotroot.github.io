@@ -2,7 +2,7 @@
 layout: post
 title: Linux Capabilities
 subtitle: Bitesize root control
-bigimg: /img/header_science.jpg
+bigimg: /img/header_tech_2.jpg
 ---
 
 I came across Linux Capabilities while researching PID namespaces in the Linux Kernel. They are certainly nothing new (they came out in the 2.2 kernel), but they are currently getting more attention, as a means of security for containers. Capabilities are essentially a system for limiting execution privilege in the kernel space.

@@ -1,3 +1,11 @@
+---
+layout: post
+title: Multi Tenancy in Keystone
+subtitle: Achieved with seperate bac-kends
+bigimg: /img/header_science.png
+---
+
+
 This is an extension of a forum post that got out of hand. Someone was asking how the access control structure worked in keystone,with a focus on its handling of a true multi tenant cloud. I then practically ended up writing a small dissertation, so it made sense to move it to here and polish it up.
 
 Multi tenancy in Keystone, is realised using 'Domains'. Domain are silos that pool projects, groups, users and roles.
@@ -18,7 +26,7 @@ Domains and the Domain administrator, need to be created by what is termed the '
 
 # SEPARATE IDENTITY BACK-ENDS
 
-Now one might wonder, its very likely that domains are going to want seperate indenity backends. You can't expect BMW and Ford to share the same LDAP system. Conveniently the keystone developers thought of this, and so you can have dedicated identity driver configurations for each domain.
+Now one might wonder, its very likely that domains are going to want seperate identity backends. You can't expect BMW and Ford to share the same LDAP system. Conveniently the keystone developers thought of this, and so you can have dedicated identity driver configurations for each domain.
 
 We enable these as follows:
 
