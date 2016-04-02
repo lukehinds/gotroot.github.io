@@ -25,8 +25,17 @@ securityheaders.io checks for the following header response results (most descri
 
 X-Frame-options is an HTTP response header and can be used to indicate whether or not a browser should be allowed to render a page in a <frame>, <iframe> or<object> . Sites can use this to avoid clickjacking attacks, by ensuring that their content is not embedded into other sites.
 
+~~~
 add_header X-Frame-Options "SAMEORIGIN";
+~~~
+
 The values available are:
+
+| X-Frame-Option | Description |
+| :---------- |:-------------------------------------------- --------------------------------|
+| DENY | The page cannot be displayed in a frame, regardless of the site attempting to do so.|
+| SAMEORIGIN | The page can only be displayed in a frame on the same origin as the page itself.|
+| ALLOW-FROM | The page can only be displayed in a frame on the specified origin.|
 
 DENY: The page cannot be displayed in a frame, regardless of the site attempting to do so.
 
