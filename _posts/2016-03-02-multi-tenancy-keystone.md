@@ -14,7 +14,7 @@ Each domain will then have its own top level Domain Administrator, with that adm
 
 Domains and the Domain administrator, need to be created by what is termed the 'The Cloud Administrator'. This is the main 'admin' set up during the initial install of keystone (think 'source openrc admin admin')
 
-![Multi-Tenancy](http://i.imgur.com/uG2gLfT.png)
+![Multi-Tenancy](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/domains-new-1024x641.png)
 
 # SEPARATE IDENTITY BACK-ENDS
 
