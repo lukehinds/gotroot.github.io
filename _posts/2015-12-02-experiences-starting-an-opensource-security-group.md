@@ -55,7 +55,7 @@ Inspector is a project to improve the auditability of any given component within
 
 I presented an overview of this recently, at the OPNFV summit, where we look for the following sorts of examples...
 
-**OS COMMAND (SHELL) EXECUTION.**
+## OS COMMAND (SHELL) EXECUTION.
 
 A very common functional case, in cloud infra stacks, is shell execution. For example a lot of OpenStack projects make calls and monitor CLI type workloads on the Host OS (Linux), and they do so by using common linux commands that are executed via code (most often python in the OpenStack world). This creates an environment, where a lot of power is at hand, to execute CLI commands on compute, network or controller nodes.
 
@@ -80,7 +80,9 @@ non_existent; rm -rf / --no-preserve-root #
 >>> call("cat " + filename, shell=True)
 ```
 
-Shell = True, results in filename, (being a CLI statement and not a filename) to be freely executed, in this case a recursive delete of your root filesystem. Shell = True, can be used securely, but it requires caution (avoid | long | pipe | type | statements or insecure variable injection).
+Shell = True, results in filename, (being a CLI statement and not a filename) to be freely executed, in this case a recursive delete of your root filesystem.
+
+Shell = True, can be used securely, but it requires caution. Avoid lots of pipes '|' or be careful of insecure variable injection.
 
 The list goes on from here, but other usual suspects checked for, our race conditions, SQL injections, Improper Initialization, Cleartext transmission etc. More can be found on the wiki page.
 
