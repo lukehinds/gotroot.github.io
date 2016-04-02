@@ -2,7 +2,7 @@
 layout: post
 title: Ansible Module Development
 subtitle: Using the Ansible Python API
-bigimg: /img/ansible-header.png
+bigimg: /img/header_tech_2.jpg
 ---
 
 So I have recently being writing some middleware code on top of the very powerful Ansible Python API.
