@@ -6,9 +6,11 @@ To understand domains, a good reference point, is to think of a standard multi t
 
 Each domain will then have its own top level Domain Administrator, with that administrator having rights to perform the following actions:
 
-Create/Update/Delete Projects within their Domain
-Create/Update/Delete Users within their Domain
-Grant/Revoke Roles on Projects
+* Create/Update/Delete Projects within their Domain
+
+* Create/Update/Delete Users within their Domain
+
+* Grant/Revoke Roles on Projects
 
 Domains and the Domain administrator, need to be created by what is termed the 'The Cloud Administrator'. This is the main 'admin' set up during the initial install of keystone (think 'source openrc admin admin')
 
