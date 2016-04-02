@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Multi Tenancy in Keystone
-subtitle: Achieved with seperate bac-kends
+subtitle: Achieved with seperate back-ends
 bigimg: /img/header_science.png
 ---
 
