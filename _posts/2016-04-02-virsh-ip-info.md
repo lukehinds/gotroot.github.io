@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using domifaddr
-subtitle: Using virsh domifaddr, for getting vm IP info
+subtitle: virsh domifaddr providing IP info
 bigimg: /img/path.jpg
 ---
 
