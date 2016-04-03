@@ -17,6 +17,8 @@ Capabilities are a per-thread attribute. They are the go to standard now, for al
 
 Prior to capabilities, developers would use setuid to allow normal users to call an executable at root level.
 
+# SETUID
+
 A good example of setuid would be for the ping command. Ping required root so it can open a socket in raw mode.
 
 ```
