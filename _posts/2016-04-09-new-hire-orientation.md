@@ -12,8 +12,6 @@ Sessions were around HR, Office Real Estate and IT support, with Jan Wildeboer d
 
 We also had a tour of the city, followed by Bavarian food (and Beer of course)
 
-![NHO](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/NHO_April_2016.JPG)
-
 ![NHO](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/Munich1.jpg)
 
 ![NHO](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/Munich2.jpg)
