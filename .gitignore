@@ -3,8 +3,9 @@ _site
 _examples
 .sass-cache
 .vagrant
-
+blogideas.md
 # general
 .DS_Store
 Thumbs.db
 ehthumbs.db
+supporting/
