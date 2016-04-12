@@ -160,7 +160,7 @@ computenode2.mydomain
 
 I then iterate my hosts using a NamedTemporaryFile and pass this as an inventory value - we will see this latter. Props to billwanjohi for this method.
 
-```
+```python
 def load_temporary_inventory(content):
     tmpfile = NamedTemporaryFile()
     try:
@@ -197,7 +197,7 @@ keyname = luke
 
 And our module, which we will call openstack_module (note the lack of .py extension!) -  you need to save this into ~/ansible-project/ansible-modules/
 
-```
+```python
 #!/usr/bin/python
 
 import os
@@ -271,7 +271,7 @@ Let's now take a look at the python script which calls the ansible API to kick o
 
 Save this script into ~/ansible-project
 
-```
+```python
 import os
 import json
 import ansible.runner
