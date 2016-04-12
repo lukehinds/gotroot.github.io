@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Epson Wireless Scanner on Fedora
+subtitle: How to get it working :)
 ---
 
 This is for the Epson XP-312 wireless scanner / printer, but it should work with most wireless scanners from Epson.
