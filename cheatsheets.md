@@ -5,11 +5,71 @@ subtitle: Stuff I always forget.
 ---
 
 Go to section
-* [Hello](#hello)  
-* [Hello World](#hello-world)
-* [Another section](#new-section)    <-- it's called 'Another section' in this list but refers to 'New section'
+* [virsh](#virsh)  
+* [Neutron](#neutron)
+
+## virsh
+
+# List domains
+
+~~~
+virsh list                # List running
+virsh list --all          # List all
+~~~
+
+# Control instances
+
+~~~
+virsh start <instance>
+virsh shutdown <instance>
+virsh destroy <instance>
+virsh suspend <instance>
+virsh resume <instance>
+~~~
 
 
-## Hello
-### Hello World
-## New section
+# Define instances
+
+~~~
+virsh dumpxml <instance> >dump.xml
+virsh create dump.xml   # Create from XML
+virsh edit <instance>
+virsh undefine <instance>
+~~~
+
+# Resize block device
+
+~~~
+virsh blockresize <instance> --path vda --size 100G
+~~~
+
+# Get Info
+
+~~~
+virsh dominfo
+virsh vcpuinfo
+virsh nodeinfo
+~~~
+
+# I want out
+
+~~~
+virsh quit   # Leave CLI
+~~~
+
+
+
+## Neutron
+
+# Crete Network
+
+~~~
+neutron net-create NAME
+~~~
+
+# Create a subnetwork
+
+~~~
+neutron subnet-create NETWORK_NAME CIDR
+neutron subnet-create my-network 10.0.0.0/29
+~~~
