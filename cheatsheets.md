@@ -4,10 +4,11 @@ title: Cheatsheets
 subtitle: Stuff I always forget.
 ---
 
-Go to section
-* [virsh](#virsh)  
-* [Neutron](#neutron)
+##### Table of Contents
+[virsh](#virsh)  
+[neutron](#neutron)
 
+<a name="headers"/>
 ## virsh
 
 # List domains
@@ -58,7 +59,7 @@ virsh quit   # Leave CLI
 ~~~
 
 
-
+<a name="neutron"/>
 ## Neutron
 
 # Crete Network
