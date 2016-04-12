@@ -8,17 +8,17 @@ subtitle: Stuff I always forget.
 [virsh](#virsh)  
 [neutron](#neutron)
 
-<a name="headers"/>
+<a name="virsh"/>
 ## virsh
 
-# List domains
+### List domains
 
 ~~~
 virsh list                # List running
 virsh list --all          # List all
 ~~~
 
-# Control instances
+### Control instances
 
 ~~~
 virsh start <instance>
@@ -29,7 +29,7 @@ virsh resume <instance>
 ~~~
 
 
-# Define instances
+### Define instances
 
 ~~~
 virsh dumpxml <instance> >dump.xml
@@ -38,13 +38,13 @@ virsh edit <instance>
 virsh undefine <instance>
 ~~~
 
-# Resize block device
+### Resize block device
 
 ~~~
 virsh blockresize <instance> --path vda --size 100G
 ~~~
 
-# Get Info
+### Get Info
 
 ~~~
 virsh dominfo
@@ -52,7 +52,7 @@ virsh vcpuinfo
 virsh nodeinfo
 ~~~
 
-# I want out
+### I want out
 
 ~~~
 virsh quit   # Leave CLI
@@ -60,15 +60,15 @@ virsh quit   # Leave CLI
 
 
 <a name="neutron"/>
-## Neutron
+## neutron
 
-# Crete Network
+### Crete Network
 
 ~~~
 neutron net-create NAME
 ~~~
 
-# Create a subnetwork
+### Create a subnetwork
 
 ~~~
 neutron subnet-create NETWORK_NAME CIDR
