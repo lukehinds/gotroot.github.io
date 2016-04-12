@@ -7,7 +7,7 @@ This is for the Epson XP-312 wireless scanner / printer, but it should work with
 
 First off, set up an address reservation on your router for the IP assigned to the Epson device. For example, mine is 192.168.1.44
 
-After that go to the Epson download page, and search for drivers for your Linux drivers for your particular model.
+After that go to the [Epson download page](http://download.ebz.epson.net/dsc/search/01/search/?OSC=LX), and search for drivers for your Linux drivers for your particular model.
 
 ![epson-page](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/epson-page.jpg)
 
