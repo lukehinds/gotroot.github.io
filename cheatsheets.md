@@ -4,12 +4,12 @@ title: Cheatsheets
 subtitle: Stuff I always forget.
 ---
 
-##### Table of Contents
+# Table of Contents
 [virsh](#virsh)  
 [neutron](#neutron)
 
 
-# virsh
+## virsh
 
 ### List domains
 
