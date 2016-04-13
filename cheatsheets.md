@@ -6,7 +6,7 @@ subtitle: Stuff I always forget.
 * Test
 {:toc}
 
-# virsh
+# Virtualization
 
 ## Domains
 
@@ -17,17 +17,17 @@ virsh list                # List running
 virsh list --all          # List all
 ~~~
 
-### Control instances
+### Control domains
 
 ~~~
-virsh start <instance>
-virsh shutdown <instance>
-virsh destroy <instance>
-virsh suspend <instance>
-virsh resume <instance>
+virsh start <domain>
+virsh shutdown <domain>
+virsh destroy <domain>
+virsh suspend <domain>
+virsh resume <domain>
 ~~~
 
-### Define instances
+### Define domains
 
 ~~~
 virsh dumpxml <instance> >dump.xml
@@ -50,41 +50,41 @@ virsh vcpuinfo
 virsh nodeinfo
 ~~~
 
-### Snapshots
+## Snapshots
 
-#### list Snapshots
+### list Snapshots
 
 ~~~
 virsh snapshot-list
 ~~~
 
-#### Restore Snapshot
+### Restore Snapshot
 
 ~~~
 virsh snapshot-revert --domain undercloud <snapshot-name>
 ~~~
 
-#### Delete Snapshots
+### Delete Snapshots
 
 ~~~
 virsh snapshot-delete domain snapshot
 ~~~
 
-### Networks
+## Networks
 
-#### List Networks
+### List Networks
 
 ~~~
 virsh net-list
 ~~~
 
-#### Inspect Networks (XML)
+### Inspect Networks (XML)
 
 ~~~
 virsh net-dumpxml NETWORK
 ~~~
 
-#### Define Network
+### Define Network
 
 ~~~
 host# cat > /tmp/provisioning.xml <<EOF
@@ -95,7 +95,7 @@ host# cat > /tmp/provisioning.xml <<EOF
 EOF
 ~~~
 
-#### Edit Network
+### Edit Network
 
 ~~~
 virsh  net-edit NETWORK
@@ -105,7 +105,7 @@ Note: after changing network xml schema, you need to recreate the network:
 
 ~~~
 virsh net-destroy NETWORK
-virsh net-create NETWORK)
+virsh net-create NETWORK
 ~~~
 
 ## qemu-img
@@ -218,7 +218,7 @@ journalctl --since "2 days ago"
 journalctl --since "2015-06-26 23:15:00" --until "2015-06-26 23:20:00"
 ~~~
 
-## gpg
+# gpg
 
 ~~~
 gpg --list-keys
