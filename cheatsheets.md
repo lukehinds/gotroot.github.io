@@ -8,14 +8,28 @@ subtitle: Stuff I always forget.
 
 # virsh
 
-#### List domains
+### List domains
 
 ~~~
 virsh list                # List running
 virsh list --all          # List all
 ~~~
 
-#### Control instances
+### Snapshots
+
+#### list Snapshots
+
+~~~
+virsh snapshot-list
+~~~
+
+#### Delete Snapshots
+
+~~~
+virsh snapshot-delete domain snapshot
+~~~
+
+### Control instances
 
 ~~~
 virsh start <instance>
@@ -25,7 +39,7 @@ virsh suspend <instance>
 virsh resume <instance>
 ~~~
 
-#### Define instances
+### Define instances
 
 ~~~
 virsh dumpxml <instance> >dump.xml
@@ -34,13 +48,13 @@ virsh edit <instance>
 virsh undefine <instance>
 ~~~
 
-#### Resize block device
+### Resize block device
 
 ~~~
 virsh blockresize <instance> --path vda --size 100G
 ~~~
 
-#### Get Info
+### Get Info
 
 ~~~
 virsh dominfo
@@ -48,7 +62,7 @@ virsh vcpuinfo
 virsh nodeinfo
 ~~~
 
-#### I want out
+### I want out
 
 ~~~
 virsh quit   # Leave CLI
@@ -56,25 +70,61 @@ virsh quit   # Leave CLI
 
 # TripleO
 
-View status of baremetal introspection
+### baremetal introspection status (dhcp)
 
 ~~~
 sudo journalctl -l -u openstack-ironic-discoverd \
     -u openstack-ironic-discoverd-dnsmasq -f
 ~~~
+
 # neutron
 
-#### Create Network
+### Create Network
 
 ~~~
 neutron net-create NAME
 ~~~
 
-#### Create a subnetwork
+### Create a subnetwork
 
 ~~~
 neutron subnet-create NETWORK_NAME CIDR
 neutron subnet-create my-network 10.0.0.0/29
+~~~
+
+# journalctl
+
+### Boot messages
+
+~~~
+journalctl -b
+~~~
+
+### List boots
+
+
+~~~
+journalctl --list-boots
+~~~
+
+Use the -1 modifier; to see boot messages from two boots ago, use -2; and so on:
+
+~~~
+journalctl -b -1
+~~~
+
+### Time Ranges
+
+~~~
+journalctl --since "1 hour ago"
+~~~
+
+~~~
+journalctl --since "2 days ago"
+~~~
+
+~~~
+journalctl --since "2015-06-26 23:15:00" --until "2015-06-26 23:20:00"
 ~~~
 
 # gpg
