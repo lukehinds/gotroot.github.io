@@ -8,7 +8,6 @@ subtitle: Stuff I always forget.
 
 # Openstack
 [TripleO](#TripleO)
-
 [neutron](#neutron)
 
 # General Nix
