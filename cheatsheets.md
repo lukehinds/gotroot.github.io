@@ -3,6 +3,9 @@ layout: page
 title: Cheatsheets
 subtitle: Stuff I always forget.
 ---
+
+{:toc}
+
 # Virtualization
 [virsh](#virsh)  
 
