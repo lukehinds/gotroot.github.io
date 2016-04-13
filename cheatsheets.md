@@ -6,17 +6,6 @@ subtitle: Stuff I always forget.
 * Test
 {:toc}
 
-# Virtualization
-[virsh](#virsh)  
-
-# Openstack
-[TripleO](#TripleO)
-[neutron](#neutron)
-
-# General Nix
-[gpg](#gpg)
-
-
 # virsh
 
 #### List domains
@@ -64,6 +53,7 @@ virsh nodeinfo
 ~~~
 virsh quit   # Leave CLI
 ~~~
+
 # TripleO
 
 View status of baremetal introspection
