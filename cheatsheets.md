@@ -3,11 +3,15 @@ layout: page
 title: Cheatsheets
 subtitle: Stuff I always forget.
 ---
+# Virtualization
+[virsh](#virsh)  
 
-# Table of Contents
-# [virsh](#virsh)  
-# [neutron](#neutron)
-# [gpg](#gpg)
+# Openstack
+[TripleO](#TripleO)
+[neutron](#neutron)
+
+# General Nix 
+[gpg](#gpg)
 
 
 # virsh
@@ -28,7 +32,6 @@ virsh destroy <instance>
 virsh suspend <instance>
 virsh resume <instance>
 ~~~
-
 
 #### Define instances
 
@@ -58,8 +61,14 @@ virsh nodeinfo
 ~~~
 virsh quit   # Leave CLI
 ~~~
+# TripleO
 
+View status of baremetal introspection
 
+~~~
+sudo journalctl -l -u openstack-ironic-discoverd \
+    -u openstack-ironic-discoverd-dnsmasq -f
+~~~
 # neutron
 
 #### Create Network
