@@ -8,7 +8,7 @@ subtitle: Stuff I always forget.
 
 # virsh
 
-### Domains
+## Domains
 
 ### List domains
 
@@ -58,6 +58,12 @@ virsh nodeinfo
 virsh snapshot-list
 ~~~
 
+#### Restore Snapshot
+
+~~~
+virsh snapshot-revert --domain undercloud <snapshot-name>
+~~~
+
 #### Delete Snapshots
 
 ~~~
@@ -87,6 +93,67 @@ host# cat > /tmp/provisioning.xml <<EOF
   <ip address="172.16.0.254" netmask="255.255.255.0"/>
 </network>
 EOF
+~~~
+
+#### Edit Network
+
+~~~
+virsh  net-edit NETWORK
+~~~
+
+Note: after changing network xml schema, you need to recreate the network:
+
+~~~
+virsh net-destroy NETWORK
+virsh net-create NETWORK)
+~~~
+
+## qemu-img
+
+### Get Image Info
+
+~~~
+qemu-img info image.qcow2
+~~~
+
+### Create new image
+
+~~~
+qemu-img create -f qcow2 image.qcow2 40G
+~~~
+
+## virt-customize
+
+### Run command
+
+~~~
+virt-customize -a image.qcow2 --run-command 'yum remove cloud-init* -y'
+~~~
+
+~~~
+virt-customize -a image.qcow2 --root-password password:PASSWORD
+~~~
+
+~~~
+virt-customize -a undercloud.qcow2 --run-command 'cp /etc/sysconfig/network-scripts/ifcfg-eth{0,1} && sed -i s/DEVICE=.*/DEVICE=eth1/g /etc/sysconfig/network-scripts/ifcfg-eth1'
+~~~
+
+## virt-install
+
+~~~
+virt-install --ram 16384 --vcpus 4 --os-variant rhel7 \
+    --disk path=/var/lib/libvirt/images/image.qcow2,device=disk,bus=virtio,format=qcow2 \
+    --import --noautoconsole --vnc --network network:provisioning \
+    --network network:default --name myvirtualmachine
+~~~
+
+
+## virt-filesystems
+
+### Inspect partition size / info
+
+~~~
+virt-filesystems --long -h --all -a image.qcow2
 ~~~
 
 # OpenStack
