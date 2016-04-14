@@ -198,7 +198,7 @@ journalctl -b
 journalctl --list-boots
 ~~~
 
-Use the -1 modifier; to see boot messages from two boots ago, use -2; and so on:
+*Use the -1 modifier; to see boot messages from two boots ago, use -2; and so on:*
 
 ~~~
 journalctl -b -1
@@ -218,7 +218,46 @@ journalctl --since "2 days ago"
 journalctl --since "2015-06-26 23:15:00" --until "2015-06-26 23:20:00"
 ~~~
 
-# gpg
+## Facter
+
+
+### install Facter
+
+Collect and display facts about the system, can make returns formatted in json.
+
+~~~
+yum / dnf install facter - y
+~~~
+
+### Examples:
+
+~~~
+$ facter
+           architecture => amd64
+           blockdevices => sda,sr0
+           domain => example.com
+           fqdn => puppet.example.com
+           hardwaremodel => x86_64
+           [...]
+~~~
+
+
+~~~
+$ facter --json architecture kernel hardwaremodel
+{
+  "architecture": "amd64",
+  "kernel": "Linux",
+  "hardwaremodel": "x86_64"
+}
+~~~
+
+~~~
+$ ipaddr=$(facter ipaddress_eth1)
+$ echo $ipaddr
+192.168.122.253
+~~~
+
+## gpg
 
 ~~~
 gpg --list-keys
