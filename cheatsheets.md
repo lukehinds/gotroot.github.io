@@ -105,7 +105,7 @@ Note: after changing network xml schema, you need to recreate the network:
 
 ~~~
 virsh net-destroy NETWORK
-virsh net-create NETWORK
+virsh net-start NETWORK
 ~~~
 
 ## qemu-img
@@ -157,6 +157,29 @@ virt-filesystems --long -h --all -a image.qcow2
 ~~~
 
 # OpenStack
+
+## Inspect endpoints
+
+~~~
+openstack catalog show <project>
+~~~
+
+*example:*
+
+~~~
+$ openstack catalog show neutron
++-----------+----------------------------------------+
+| Field     | Value                                  |
++-----------+----------------------------------------+
+| endpoints | regionOne                              |
+|           |   publicURL: http://172.16.0.1:9696/   |
+|           |   internalURL: http://172.16.0.1:9696/ |
+|           |   adminURL: http://172.16.0.1:9696/    |
+|           |                                        |
+| name      | neutron                                |
+| type      | network                                |
++-----------+----------------------------------------+
+~~~
 
 ## TripleO
 
@@ -220,10 +243,9 @@ journalctl --since "2015-06-26 23:15:00" --until "2015-06-26 23:20:00"
 
 ## Facter
 
+Collect and display facts about the system, can make returns formatted in json.
 
 ### install Facter
-
-Collect and display facts about the system, can make returns formatted in json.
 
 ~~~
 yum / dnf install facter - y
@@ -262,4 +284,58 @@ $ echo $ipaddr
 ~~~
 gpg --list-keys
 gpg --list-secret-keys
+~~~
+
+## Handy CLI
+
+### Show config file entries, minus comments ('#')
+
+~~~
+egrep -v '^#|^$' file.conf
+~~~
+
+# Misc Stuff
+
+## NCMCPP shotcuts
+
+~~~
+Up k : Move Cursor up
+Down j : Move Cursor down
+Page Up : Page up
+Page Down : Page down
+Home : Home
+End : End
+Tab : Switch between playlist and browser
+1 F1 : Help screen
+2 F2 : Playlist screen
+3 F3 : Browse screen
+4 F4 : Search engine
+5 F5 : Media library
+6 F6 : Playlist editor
+7 F7 : Tag editor
+0 F10 : Clock screen
+
+Keys - Global
+-----------------------------------------
+s : Stop
+P : Pause
+> : Next track
+< : Previous track
+f : Seek forward
+b : Seek backward
+Left - : Decrease volume
+Right + : Increase volume
+t : Toggle space mode (select/add)
+T : Toggle add mode
+| : Toggle mouse support
+v : Reverse selection
+V : Deselect all items
+A : Add selected items to playlist/m3u file
+r : Toggle repeat mode
+Z : Shuffle playlist
+i : Show song's info
+I : Show artist's info
+L : Toggle lyrics database
+l : Show/hide song's lyrics
+q Q : Quit
 ~~~
