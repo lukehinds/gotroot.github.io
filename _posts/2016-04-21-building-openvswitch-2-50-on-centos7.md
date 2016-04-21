@@ -5,7 +5,7 @@ subtitle: Quick run through
 bigimg: /img/path.jpg
 ---
 
-Set to SElinux to Permissive (obvioulsy this is only for a test machine, if you're doing anything in product, leave it enforcing and use the OVS in the CentOS openstack repos)
+Set to SElinux to Permissive (obviously this is only for a test machine, if you're doing anything in production	, leave it enforcing and use the OVS in the CentOS openstack repos)
 
 ~~~
 sudo setenforce Permissive
@@ -21,6 +21,12 @@ Clone mininet:
 
 ~~~
 git clone git://github.com/mininet/mininet.git
+~~~
+
+Edit  the install script:
+
+~~~
+vim mininet/util/install.sh
 ~~~
 
 Add a section for CentOS (you will see the existing sections for Rhel, Debian and Fedora)
