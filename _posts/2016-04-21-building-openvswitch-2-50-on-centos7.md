@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Building the lastest version of OVS and mininet within CentOS 7
+title: Building the latest version of OVS and mininet within CentOS 7
 subtitle: Quick run through
 bigimg: /img/path.jpg
 ---
