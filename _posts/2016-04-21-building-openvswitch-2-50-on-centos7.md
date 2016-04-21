@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Building the lastest version of OVS and mininet within CentOS 7
-subtitle: How I cracked it.
+subtitle: Quick run through
 bigimg: /img/path.jpg
 ---
 
