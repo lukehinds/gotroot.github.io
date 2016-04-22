@@ -1,7 +1,7 @@
 ---
 layout: post
-title: SSH: X11 forwarding request failed on channel 0
-subtitle: Install xauth, you loon!
+title: X11 forwarding request failed on channel 0
+subtitle: How to fix
 bigimg: /img/path.jpg
 ---
 
