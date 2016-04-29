@@ -68,9 +68,9 @@ libtool wget
 ~~~
 mkdir -p ~/rpmbuild/SOURCES/
 cd ~/rpmbuild/SOURCES/
-wget http://openvswitch.org/releases/openvswitch-2.3.0.tar.gz
-tar zxvf openvswitch-2.3.0.tar.gz
-cd openvswitch-2.3.0
+wget http://openvswitch.org/releases/openvswitch-2.5.0.tar.gz
+tar zxvf openvswitch-2.5.0.tar.gz
+cd openvswitch-2.5.0
 rpmbuild -bb --without check rhel/openvswitch.spec
 sudo rpm -ivh --nodeps ~/rpmbuild/RPMS/x86_64/openvswitch*.rpm
 ~~~

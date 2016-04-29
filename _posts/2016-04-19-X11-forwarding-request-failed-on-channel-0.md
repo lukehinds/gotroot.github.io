@@ -5,7 +5,7 @@ subtitle: How to fix
 bigimg: /img/path.jpg
 ---
 
-# Ever get the following issue when trying to X-forward?
+Ever get the following issue when trying to X-forward?
 
 ~~~
 ssh -X root@192.168.124.29
