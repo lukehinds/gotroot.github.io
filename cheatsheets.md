@@ -6,6 +6,11 @@ subtitle: Stuff I always forget.
 * Test
 {:toc}
 
+Add some of these:
+
+https://raymii.org/s/articles/virt-install_introduction_and_copy_paste_distro_install_commands.html
+
+
 # Virtualization
 
 ## Domains
@@ -108,6 +113,44 @@ virsh net-destroy NETWORK
 virsh net-start NETWORK
 ~~~
 
+### Get IP Address of Domains
+
+~~~
+virsh domifaddr <domain> --full
+~~~
+
+~~~
+virsh net-dhcp-leases --network default
+~~~
+
+## virt-customize
+
+### Change password
+
+~~~
+virt-customize -a shibboleth.qcow2 --root-password password:p6ssw0rd
+~~~
+
+### Run Command
+
+~~~
+virt-customize -a <domain>.qcow2 --run-command '<command>'
+~~~
+
+#### Examples:
+
+~~~
+virt-customize -a shibboleth.qcow2 --run-command 'yum remove cloud-init* -y'
+~~~
+
+~~~
+virt-customize -a shibboleth.qcow2 --run-command 'sed -i s/^PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config'
+~~~
+
+~~~
+virt-customize -a undercloud.qcow2 --run-command 'cp /etc/sysconfig/network-scripts/ifcfg-eth{0,1} && sed -i s/DEVICE=.*/DEVICE=eth1/g /etc/sysconfig/network-scripts/ifcfg-eth1'
+~~~
+
 ## qemu-img
 
 ### Get Image Info
@@ -122,21 +165,6 @@ qemu-img info image.qcow2
 qemu-img create -f qcow2 image.qcow2 40G
 ~~~
 
-## virt-customize
-
-### Run command
-
-~~~
-virt-customize -a image.qcow2 --run-command 'yum remove cloud-init* -y'
-~~~
-
-~~~
-virt-customize -a image.qcow2 --root-password password:PASSWORD
-~~~
-
-~~~
-virt-customize -a undercloud.qcow2 --run-command 'cp /etc/sysconfig/network-scripts/ifcfg-eth{0,1} && sed -i s/DEVICE=.*/DEVICE=eth1/g /etc/sysconfig/network-scripts/ifcfg-eth1'
-~~~
 
 ## virt-install
 
