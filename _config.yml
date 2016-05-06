@@ -31,6 +31,7 @@ navbar-links:
     - Where I work: "https://redhat.com"
     - Twitter: "https://twitter.com/lukeahinds"
     - Cheatsheets: "cheatsheets"
+    - Gerrit Workflow: "git-gerrit-workflow"
     - Linux Perf Tools: "linux_performance_tools"
     - GPG Key: "https://pgp.mit.edu/pks/lookup?op=get&search=0xF16556173C202614"
 
