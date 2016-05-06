@@ -233,6 +233,51 @@ neutron subnet-create NETWORK_NAME CIDR
 neutron subnet-create my-network 10.0.0.0/29
 ~~~
 
+## Keystone
+
+### API Examples
+
+~~~
+curl -i \
+  -H "Content-Type: application/json" \
+  -d '
+{ "auth": {
+    "identity": {
+      "methods": ["password"],
+      "password": {
+        "user": {
+          "name": "admin",
+          "domain": { "id": "default" },
+          "password": "secret"
+        }
+      }
+    }
+  }
+}' http://localhost:35357/v3/auth/tokens ; echo
+~~~
+
+~~~
+curl -i \
+  -H "Content-Type: application/json" \
+  -d '
+{ "auth": {
+    "identity": {
+      "methods": ["password"],
+      "password": {
+        "user": {
+          "name": "user",
+          "domain": { "id": "default" },
+          "password": "secret"
+        }
+      }
+    }
+  }
+}' http://localhost:5000/v3/auth/tokens ; echo
+~~~
+
+
+
+
 # General Linux Admin
 
 ## journalctl
