@@ -115,3 +115,26 @@ git pull origin master
 git checkout TOPIC-BRANCH
 git rebase -i master
 ~~~
+
+### Pull down review
+
+Use Patchset
+
+For example, for https://review.openstack.org/#/c/148486/
+
+~~~
+git review -d 148486
+~~~
+
+Or change id:
+
+~~~
+git review -d I35729a86e211391f67cc959d19416c9125c6f9eb
+~~~
+
+You can also request a specific revision of the patch by appending a comma and the patch number. 
+E.g, to get the second revision of that patch:
+
+~~~
+git review -d 148486,2
+~~~
