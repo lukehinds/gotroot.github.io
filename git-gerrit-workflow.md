@@ -4,15 +4,17 @@ title: OpenStack Patch flow
 subtitle: GIT Review & Gerrit
 ---
 
-Source: http://docs.openstack.org/infra/manual/developers.html
-
-### Check config is correct
+# Check config
 
 ~~~
 git config --list
 ~~~
 
-# New Project
+~~~
+git config --global gitreview.username yourgerritusername
+~~~
+
+## New Project
 
 ### Clone
 
@@ -20,14 +22,13 @@ git config --list
 git clone https://git.openstack.org/openstack/<projectname>.git
 ~~~
 
+### Set up git review
 ~~~
 cd <projectname>
 git review -s
 ~~~
 
-~~~
-git config --global gitreview.username yourgerritusername
-~~~
+# Work flow
 
 There are 4 key tasks with regards to bugs that anyone can do:
 

@@ -9,13 +9,13 @@ For the following, we will be deploying this to a virtual machine running on top
 
 # Deploying CentOS7 under KVM
 
-Grab a qcow2 image lets create a new domain:
+Grab a qcow2 image, and lets create a new domain:
 
 ~~~
 qemu-img create -b centos7.0-base.qcow2 -f qcow2 shibboleth.qcow2
 ~~~
 
-Remove all the cloud-init which we don't need.
+Remove cloud-init which we don't need.
 
 ~~~
 virt-customize -a shibboleth.qcow2 --run-command 'yum remove cloud-init* -y'
@@ -28,10 +28,11 @@ virt-customize -a shibboleth.qcow2 --root-password password:<password>
 
 e.g...
 
+~~~
 virt-customize -a shibboleth.qcow2 --root-password password:dA98uH&^%38!9s
 ~~~
 
-Install our VM:
+Install a VM:
 
 ~~~
 virt-install --ram 1024 --vcpus 1 --os-variant rhel7 \
@@ -88,5 +89,3 @@ Test out Shibboleth with a GET of the Status
 ~~~
 curl -k https://127.0.0.1/Shibboleth.sso/Status
 ~~~
-
-Later on, I will try to show Keystone Integration.
