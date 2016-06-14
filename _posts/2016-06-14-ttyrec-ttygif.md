@@ -37,7 +37,7 @@ tar zxvf ttyrec-1.0.8.tar.gz ; cd ttyrec-1.0.8.tar.gz
 Download the following patch (as of writing this works on Fedora 23 (non wayland) and CentOS / RHEL 7)
 
 ~~~
-wget https://gist.githubusercontent.com/lukehinds/226452a6c3fbdc1275bdea66c954e8f6/raw/d9c6f77e09acf4cb7ffadc2e5f4c66aea0bf1c4e/ttyrec-1.0.8.RHEL5.patch
+wget https://gist.githubusercontent.com/lukehinds/226452a6c3fbdc1275bdea66c954e8f6/raw/9ce0c7446e7f328e42d24419c31be5d605de428d/ttyrec-1.0.8.patch
 ~~~
 
 Apply the patch
