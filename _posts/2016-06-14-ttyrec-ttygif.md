@@ -5,7 +5,6 @@ subtitle: Using ttyrec & ttygif
 bigimg: /img/entropyequation.gif
 ---
 
-~~~
 I recently needed to record some terminal actions, as a back up for a demo I planned to present. I was
 already aware of asciicinema, but found that the lack of full screen mode, meant it came up short for my
 needs.
