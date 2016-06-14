@@ -16,6 +16,8 @@ An example of the sort of result you can get:
 
 ![demogif](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/tty.gif)
 
+* Note: If you zoom your browser in (mouse wheel), you will see the resolution improves a lot (good enough)
+for a full screen presentation.
 
 ## Building ttyrec
 
