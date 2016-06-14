@@ -367,6 +367,11 @@ gpg --list-secret-keys
 egrep -v '^#|^$' file.conf
 ~~~
 
+### spawn a quick socket with netcat
+~~~
+nc -l -k -p 5000
+~~~
+
 # Misc Stuff
 
 ## NCMCPP shotcuts

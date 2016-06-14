@@ -44,7 +44,6 @@ Closes-Bug: #######
 Partial-Bug: #######
 Related-Bug: #######
 
-
 Once your local repository is set up as above, you must use the following workflow.
 
 Make sure you have the latest upstream changes:
