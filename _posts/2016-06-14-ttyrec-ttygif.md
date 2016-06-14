@@ -4,21 +4,25 @@ title: Record your terminal to gif
 subtitle: Using ttyrec & ttygif
 ---
 
-I recently needed to record some terminal actions, as a back up for a demo I planned to present. I was
-already aware of asciicinema, but found that the lack of full screen mode, meant it came up short for my
+I recently needed to record some terminal sessions, as back up for a demo I planned to present. I was
+already aware of asciinema.org, but found that the lack of full screen mode, meant it came up short for my
 needs.
 
-In the end I went for a combination of the very old ttyrec application, with its resulting recording converted
+In the end I went for a combination of the very old ttyrec application, with its result recording, converted
 into GIF format using ttygif.
 
 An example of the sort of result you can get:
 
 ![demogif](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/tty.gif)
 
-* Note: If you zoom your browser in (mouse wheel), you will see the resolution improves a lot (good enough)
+* Note: If you zoom your browser in (mouse wheel), you will see the resolution improves, which is good enough
 for a full screen presentation.
 
 ## Building ttyrec
+
+* Note: ttyrec has not been maintained since 2006, but then again, not a lot has changed to the tty code in
+the kernel, so it works fine. I just had to patch the code to work on Fedora. With other dists, your mileage
+may vary.
 
 Download the latest (2006!) version of ttyrec
 
