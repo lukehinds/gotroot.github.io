@@ -55,7 +55,7 @@ make
 ## Building ttygif
 
 ~~~
-git clone patch -i https://github.com/icholy/ttygif.gi://github.com/icholy/ttygif.git ; cd ttygif
+git clone https://github.com/icholy/ttygif.git ; cd ttygif
 ~~~
 
 ~~~
