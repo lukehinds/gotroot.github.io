@@ -2,7 +2,6 @@
 layout: post
 title: Record your terminal to gif
 subtitle: Using ttyrec & ttygif
-bigimg: /img/entropyequation.gif
 ---
 
 I recently needed to record some terminal actions, as a back up for a demo I planned to present. I was
