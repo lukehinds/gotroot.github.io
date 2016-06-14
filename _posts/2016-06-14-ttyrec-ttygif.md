@@ -43,7 +43,7 @@ wget https://gist.githubusercontent.com/lukehinds/226452a6c3fbdc1275bdea66c954e8
 Apply the patch
 
 ~~~
-patch -i ttyrec-1.0.8.RHEL5.patch
+patch -i ttyrec-1.0.8.patch
 ~~~
 
 And make
