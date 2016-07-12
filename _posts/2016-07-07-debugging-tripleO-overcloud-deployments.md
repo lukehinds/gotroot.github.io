@@ -44,8 +44,7 @@ heat deployment-show a8e4d9b5-49b3-44c2-bc16-a0f2b0944873
 ~~~
 "deploy_stderr": "Could not retrieve fact='apache_version', resolution='<anonymous>': undefined method `[]' for nil:NilClass\nCould not retrieve fact='apache_version', resolution='<anonymous>': undefined method `[]' for nil:NilClass\n\u001b[1;31mWarning: Scope(Class[Mongodb::Server]): Replset specified, but no replset_members or replset_config provided.\u001b[0m\n\u001b[1;31mWarning: Scope(Class[Keystone]): Execution of db_sync does not depend on $enabled anymore. Please use sync_db instead.\u001b[0m\n\u001b[1;31mWarning: Scope(Class[Keystone]):
 ~~~
-
-<snip>
+-snip-
 
 ~~~
 Could not evaluate: Cannot allocate memory - fork(2)\u001b[0m\n\u001b[1;31mWarning: /Stage[main]/Heat::Deps/Anchor[heat::service::end]: Skipping because of failed dependencies\u001b[0m\n",
