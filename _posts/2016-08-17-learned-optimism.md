@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Learned Optimism 
+title: Learned Optimism
 subtitle: Quick run through
 bigimg: /img/path.jpg
 ---
