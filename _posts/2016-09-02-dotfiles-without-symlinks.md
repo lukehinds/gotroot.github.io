@@ -5,8 +5,8 @@ subtitle: No faffing about
 bigimg: /img/header_tech_2.jpg
 ---
 
-Hands down, this is the best way of how found for managing dotfiles, without
-needing to symlink to a local repo somewhere.
+Hands down, this is the best way I have found so far, for managing dotfiles
+without needing to symlink to a local repo somewhere.
 
 Instead we use a `--bare` git repository and set up a simple alias.
 
