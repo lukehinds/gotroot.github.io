@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>NFV Performance Security considerations</title>
+<meta name="author" content="(Luke Hinds)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">NFV Performance Security considerations</h1><h2 class="author">Luke Hinds</h2><p class="date">Created: 2016-10-05 Wed 14:24</p>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-orgheadline4">Security Risks in SRIOV</a>
+<ul>
+<li><a href="#/slide-orgheadline1">MAC Spoofing</a></li>
+<li><a href="#/slide-orgheadline2">Network Flow Control</a></li>
+<li><a href="#/slide-orgheadline3">Rate limiting</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgheadline7">DPDK</a>
+<ul>
+<li><a href="#/slide-orgheadline5">Mulit Process Limit in DPDK</a></li>
+<li><a href="#/slide-orgheadline6">Pause Frame Exploit</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgheadline10">OVS &amp; SDN</a>
+<ul>
+<li><a href="#/slide-orgheadline8">Use OVSDB Authentification</a></li>
+<li><a href="#/slide-orgheadline9">Protect Controllers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-orgheadline4">
+<h2 id="orgheadline4">Security Risks in SRIOV</h2>
+<ul>
+<li>Mac Spoofing</li>
+<li>Network Flow Control</li>
+<li>Rate Limiting</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline1">
+<h3 id="orgheadline1">MAC Spoofing</h3>
+<p>
+Guests can assign their own MAC addreses, thereby allowing MAC spoofing..
+</p>
+</section>
+<section>
+<p>
+This can be negated using the IP cmd..
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">ip link set eth0 vf <span style="color: #a45bad;">3</span> mac xx:yy:xx:yy:xx:yy vlan <span style="color: #a45bad;">100</span> spoofchk on
+</pre>
+</div>
+
+</section>
+<section>
+<p>
+It can also be toggled in OpenStack neutron:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">stack@devstack:~/devstack$ neutron net-show net1
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | <span style="color: #a45bad;">725ebfa1-c3c3-43fa-b8c2-cac99f1f88fb</span> |
+| mtu                       | <span style="color: #a45bad;">0</span>                                    |
+| name                      | net1                                 |
+| port_security_enabled     | True                                 |
+| provider:network_type     | vxlan                                |
+| provider:physical_network |                                      |
+| provider:segmentation_id  | <span style="color: #a45bad;">1001</span>                                 |
+| router:external           | False                                |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   | <span style="color: #a45bad;">1d58d120-4990-41d8-b1f2-2354df54328a</span> |
+| tenant_id                 | ba328cf9aa72429aad0535ec4adcd882     |
+| vlan_transparent          | False                                |
++---------------------------+--------------------------------------+
+</pre>
+</div>
+
+</section>
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">Network Flow Control</h3>
+<p>
+Flow Control exists to provide lossless layer 2 network communications
+</p>
+</section>
+<section>
+<p>
+This enables a receiver to send a signal to the transmitter to pause traffic 
+</p>
+</section>
+<section>
+<p>
+A `PAUSE` frame is sent to the transmitter whenever the receiver side runs out of buffers
+</p>
+</section>
+<section>
+<p>
+SR-IOV enables a VM to share the physical link on the host. 
+</p>
+
+<p>
+A malicious VM could cause temporary halt to the traffic of all VMs by manipulating flow control feature. 
+</p>
+</section>
+<section>
+<p>
+At NIC side, the Ethernet flow control can be turned off&#x2026;
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">ethtool -A &lt;PF ethX&gt; autoneg off rx off tx off
+</pre>
+</div>
+</section>
+<section>
+<p>
+Most NEPs hardware typically allow flow-control to be disabled (sometimes per port)
+</p>
+</section>
+<section>
+<p>
+<b>Be Mindful:</b>
+TCP incast (many-to-one communications)
+</p>
+
+</section>
+<section id="slide-orgheadline3">
+<h3 id="orgheadline3">Rate limiting</h3>
+<p>
+A single VNF consumes all bandwidth available to a physical link, denying other VFs
+</p>
+</section>
+<section>
+<p>
+To avoid this, bandwidth limit can be set at individual VF level as shown below:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">ip link set eth2 vf <span style="color: #a45bad;">0</span> rate <span style="color: #a45bad;">100</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">where rate is mentioned in Mbps</span>
+</pre>
+</div>
+</section>
+<section>
+<p>
+If the switch where the SR-IOV physical NIC is connected supports MAC based 
+rate limiting, then the same restriction can be applied on switch side.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline7">
+<h2 id="orgheadline7">DPDK</h2>
+<p>
+Data-Plane-Development-Kit Security considerations
+</p>
+
+</section>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">Mulit Process Limit in DPDK</h3>
+<p>
+The multi-process feature requires that the exact same hugepage memory mappings be present 
+in all applications.
+</p>
+</section>
+<section>
+<ul>
+<li>The Linux security feature - Address-Space Layout Randomization (ASLR) can interfere with this</li>
+
+</ul>
+<p>
+mapping.
+</p>
+
+<ul>
+<li>VNF vendors may request to disable this feature in order to run multi-process applications.</li>
+
+</ul>
+</section>
+<section>
+<p>
+Disabling Address-Space Layout Randomization (ASLR) may have security implications, so disable only
+when these have been understood.
+</p>
+
+<p>
+<a href="http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html">http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html</a> 
+</p>
+
+</section>
+<section id="slide-orgheadline6">
+<h3 id="orgheadline6">Pause Frame Exploit</h3>
+<p>
+Pause frame exploits are currently not possible, due to flow controls being disabled in DPDK 
+</p>
+
+<p>
+<a href="http://seclists.org/oss-sec/2015/q4/425">http://seclists.org/oss-sec/2015/q4/425</a>.
+</p>
+
+<p>
+This means that adequate protection against tcp-incast would not be present, until the dpdk
+code is remedied to provide some form of frame management.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline10">
+<h2 id="orgheadline10">OVS &amp; SDN</h2>
+<p>
+OpenVSwitch Security considerations
+</p>
+
+</section>
+<section id="slide-orgheadline8">
+<h3 id="orgheadline8">Use OVSDB Authentification</h3>
+<p>
+Protect against flow table export or manipulation with TLS
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash">--ca-cert=cacert.pem --bootstrap-ca-cert=cacert.pem
+</pre>
+</div>
+
+</section>
+<section id="slide-orgheadline9">
+<h3 id="orgheadline9">Protect Controllers</h3>
+</section>
+<section>
+
+<p>
+Rate Limiting Northbound Rest API of SDN Controllers to prevent overload
+</p>
+
+</section>
+<section>
+
+<p>
+Use Network Segregation / Security Zones for Control and Data Plane traffic
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'nil',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
