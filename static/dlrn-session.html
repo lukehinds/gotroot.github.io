@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Building Spec Files with DLRN</title>
-<!-- 2016-10-07 Fri 09:37 -->
+<!-- 2016-10-07 Fri 16:18 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -226,9 +226,10 @@ $(function() {
 </li>
 <li>Clone the <b>DLRN</b> repository <code>cd ~/buildtools; git clone https://github.com/openstack-packages/DLRN</code>
 </li>
-<li>Clone <b>RDOINFO</b> repository <code>git clone https://review.rdoproject.org/r/rdoinfo</code>
-</li>
 </ul>
+<p>
+-<a href="https://lukehinds.github.io/perf_seco">https://lukehinds.github.io/perf_seco</a> Clone <b>RDOINFO</b> repository <code>git clone https://review.rdoproject.org/r/rdoinfo</code>
+</p>
 </div>
 
 <div id="outline-container-sec-3-1" class="outline-3">
@@ -251,7 +252,61 @@ Grab a dlrn.cfg (no need for any customizations)
 </div>
 </div>
 </div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Install VirtualEnv and DLRN Dependencies</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Create a virtualenv (run these commands from the <code>DLRN</code> directory:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">virtualenv env
+</pre>
 </div>
+
+<p>
+Source your new env:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash"><span style="color: #4f97d7;">source</span> env/bin/activate
+</pre>
+</div>
+
+<p>
+<b>Note:</b> Everytime you want to run dlrn, do the above first when opening a new shell instance.
+</p>
+
+<p>
+Install PIP requirements
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">pip install -r requirements.txt
+
+pip install -r test-requireiments.txt <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">might not be needed, but does not hurt!</span>
+</pre>
+</div>
+
+<p>
+Run setuptools
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">python setup.py install
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
 
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4"><span class="section-number-2">4</span> Set up project and spec file</h2>
@@ -359,7 +414,6 @@ Some people set up an Apache <code>VirtualHost</code> to view reports etc, but I
 </div>
 </div>
 
-
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6"><span class="section-number-2">6</span> Submitting a patch</h2>
 <div class="outline-text-2" id="text-6">
@@ -432,6 +486,53 @@ BZ review: https://bugzilla.redhat.com/show_bug.cgi?<span style="color: #7590db;
 Initially set under-review until distgit import is complete
 </pre>
 </div>
+
+<p>
+You can then submit for review <code>git review</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Billy Bonus - using pyp2rpm</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Pyprpm can be used to create a spec file from pypi package
+</p>
+
+<p>
+For Example:
+</p>
+
+<p>
+<a href="https://pypi.python.org/pypi/openstackdocstheme">https://pypi.python.org/pypi/openstackdocstheme</a>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">git clone https://github.com/fedora-python/pyp2rpm; <span style="color: #4f97d7;">cd</span> pyp2rpm
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">virtualenv env
+<span style="color: #4f97d7;">source</span> env/bin/activate
+pip install -r requirements.txt
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">mkdir -p ~/buildtools/myspecs/
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">pyp2rpm openstackdocstheme &gt; ~/rpmbuild/myspecs/openstackdocstheme.spec
+</pre>
 </div>
 </div>
 </div>
@@ -443,6 +544,7 @@ Initially set under-review until distgit import is complete
 <li><a href="#sec-3">3. Install DLRN</a>
 <ul class="nav">
 <li><a href="#sec-3-1">3.1. dlrn.cfg</a></li>
+<li><a href="#sec-3-2">3.2. Install VirtualEnv and DLRN Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">4. Set up project and spec file</a>
@@ -458,13 +560,14 @@ Initially set under-review until distgit import is complete
 <li><a href="#sec-6-2">6.2. Submit your patch to review.rdoproject.org</a></li>
 </ul>
 </li>
+<li><a href="#sec-7">7. Billy Bonus - using pyp2rpm</a></li>
 </ul>
 </div>
 </nav>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Luke Hinds</p>
-<p class="date">Created: 2016-10-07 Fri 09:37</p>
+<p class="date">Created: 2016-10-07 Fri 16:18</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org-mode</a> 8.3.6)</p>
 </div>
 </footer>
