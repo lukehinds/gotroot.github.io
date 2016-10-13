@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title></title>
-<!-- 2016-10-12 Wed 16:30 -->
+<!-- 2016-10-13 Thu 10:19 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -194,7 +194,7 @@ $(function() {
 <div id="content" class="container">
 <div class="row"><div class="col-md-9"><h1 class="title"></h1>
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Deployment of Contrail Role</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> Deployment of Contrail Roles</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-sec-1-1" class="outline-3">
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> Deploy quickstart</h3>
@@ -211,7 +211,6 @@ You likely won't need the <code>overcloud_image_url</code>. I had this as the ma
 
 <pre class="src src-bash">./quickstart.sh <span style="color: #2d9574;">\</span>
   --working-dir $<span style="color: #7590db;">WS</span> <span style="color: #2d9574;">\</span>
-  --no-clone <span style="color: #2d9574;">\</span>
   --teardown all <span style="color: #2d9574;">\</span>
   --tags all <span style="color: #2d9574;">\</span>
   --skip-tags overcloud-validate,overcloud-deploy <span style="color: #2d9574;">\</span>
@@ -225,10 +224,13 @@ You likely won't need the <code>overcloud_image_url</code>. I had this as the ma
 </div>
 </div>
 
-
 <div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Append the services info to a duplicate file of <code>roles_data.yaml</code></h3>
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Append the services info to roles<sub>data.yaml</sub></h3>
 <div class="outline-text-3" id="text-1-2">
+<p>
+Update <code>tripleo-heat-templates/roles_data.yaml</code> by appending the following:
+</p>
+
 <div class="org-src-container">
 
 <pre class="src src-yaml">- <span style="color: #7590db;">name</span>: Contrail
@@ -258,11 +260,15 @@ You likely won't need the <code>overcloud_image_url</code>. I had this as the ma
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 
-<pre class="src src-bash">openstack overcloud deploy <span style="color: #2d9574;">\</span>
---libvirt-type qemu <span style="color: #2d9574;">\</span>
---ntp-server pool.ntp.org <span style="color: #2d9574;">\</span>
---templates /home/stack/tripleo-heat-templates <span style="color: #2d9574;">\</span>
--e /home/stack/tripleo-heat-templates/environments/services/contrail.yaml
+<pre class="src src-bash"><span style="color: #4f97d7;">source</span> stackrc
+openstack overcloud image upload
+openstack baremetal import instackenv.json
+openstack baremetal introspection bulk start
+neutron subnet-update &lt;id&gt; --dns-nameserver <span style="color: #a45bad;">8.8.8.8</span>  
+openstack overcloud deploy <span style="color: #2d9574;">\ </span>
+  --libvirt-type qemu <span style="color: #2d9574;">\ </span>
+  --ntp-server pool.ntp.org <span style="color: #2d9574;">\</span>
+  --templates /home/stack/tripleo-heat-templates
 </pre>
 </div>
 </div>
@@ -271,10 +277,10 @@ You likely won't need the <code>overcloud_image_url</code>. I had this as the ma
 </div><div class="col-md-3"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
-<li><a href="#sec-1">1. Deployment of Contrail Role</a>
+<li><a href="#sec-1">1. Deployment of Contrail Roles</a>
 <ul class="nav">
 <li><a href="#sec-1-1">1.1. Deploy quickstart</a></li>
-<li><a href="#sec-1-2">1.2. Append the services info to a duplicate file of <code>roles_data.yaml</code></a></li>
+<li><a href="#sec-1-2">1.2. Append the services info to roles<sub>data.yaml</sub></a></li>
 <li><a href="#sec-1-3">1.3. Deploy Overcloud referencing the contrail templates</a></li>
 </ul>
 </li>
@@ -284,7 +290,7 @@ You likely won't need the <code>overcloud_image_url</code>. I had this as the ma
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Luke Hinds</p>
-<p class="date">Created: 2016-10-12 Wed 16:30</p>
+<p class="date">Created: 2016-10-13 Thu 10:19</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org-mode</a> 8.3.6)</p>
 </div>
 </footer>
