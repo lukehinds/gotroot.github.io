@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>TripleO Security Hardening</title>
-<!-- 2016-11-01 Tue 20:30 -->
+<!-- 2016-11-01 Tue 20:35 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -205,7 +205,7 @@ Hardening is a two phased approach.
 <li>Image hardening (using scap / diskimage-builder)
 </li>
 
-<li>Post image init Heat &amp; Puppet hardening
+<li>Online hardening (TripleO services and roles)
 </li>
 </ul>
 </div>
@@ -243,7 +243,7 @@ to denote it is an hardened image, for example <code>undercloud_sec.qcow2</code>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Puppet-module &amp; Heat Based Hardening</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> Online Hardening</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 For tasks that are too specific to be baked into an image or require post package installation config changes, the standard TripleO services approach could be  used.  
@@ -283,14 +283,14 @@ Operators can then pass the hardened role as an arg to <code>openstack overcloud
 <ul class="nav">
 <li><a href="#sec-1">1. Overview</a></li>
 <li><a href="#sec-2">2. Image Hardening</a></li>
-<li><a href="#sec-3">3. Puppet-module &amp; Heat Based Hardening</a></li>
+<li><a href="#sec-3">3. Online Hardening</a></li>
 </ul>
 </div>
 </nav>
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Luke Hinds</p>
-<p class="date">Created: 2016-11-01 Tue 20:30</p>
+<p class="date">Created: 2016-11-01 Tue 20:35</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org-mode</a> 8.3.6)</p>
 </div>
 </footer>
