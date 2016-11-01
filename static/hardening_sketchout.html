@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>TripleO Security Hardening</title>
-<!-- 2016-11-01 Tue 17:36 -->
+<!-- 2016-11-01 Tue 17:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -245,16 +245,15 @@ somehow to denote it is an hardened image, for example <code>undercloud_sec.qcow
 <h2 id="sec-3"><span class="section-number-2">3</span> Puppet-module &amp; Heat Based Hardening</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-For tasks that are somehow to specific to be baked into the image, or rely on post installation events of various packages, the standard TripleO
-orchestration method is used.  
+For tasks that are too specific to be baked into an image, the standard TripleO services approach is used.  
 </p>
 
 <p>
-In turn this could be leveraged further in composable-services / roles - with hardened roles being made available.
+In turn this could be leveraged further in composable roles - with hardened roles being made available.
 </p>
 
 <p>
-For example a hardened role could point to additional hardened services in the resource registry, as follows:
+For example a hardened role could point to additional "hardened services" in the resource registry, as follows:
 </p>
 
 <div class="org-src-container">
@@ -290,7 +289,7 @@ Operators can then pass the hardened role as an arg to <code>openstack overcloud
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Luke Hinds</p>
-<p class="date">Created: 2016-11-01 Tue 17:36</p>
+<p class="date">Created: 2016-11-01 Tue 17:42</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org-mode</a> 8.3.6)</p>
 </div>
 </footer>
