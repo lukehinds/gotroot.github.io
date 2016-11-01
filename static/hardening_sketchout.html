@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>TripleO Security Hardening</title>
-<!-- 2016-11-01 Tue 17:42 -->
+<!-- 2016-11-01 Tue 20:30 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -205,7 +205,7 @@ Hardening is a two phased approach.
 <li>Image hardening (using scap / diskimage-builder)
 </li>
 
-<li>Heat &amp; Puppet based hardening
+<li>Post image init Heat &amp; Puppet hardening
 </li>
 </ul>
 </div>
@@ -223,7 +223,8 @@ The premise is that as much security hardening as possible, should be baked into
 </p>
 
 <p>
-The first step is to perform a SCAP based scan using Martin Preisler's <code>oscap-vm</code> that has been <a href="https://github.com/OpenSCAP/openscap/pull/175">merged</a> into OpenSCAP
+The first step is to perform a SCAP based scan of over and undercloud <code>qcow2</code> images using Martin Preisler's <code>oscap-vm</code> script that 
+has been <a href="https://github.com/OpenSCAP/openscap/pull/175">merged</a> into OpenSCAP
 </p>
 
 <p>
@@ -231,12 +232,12 @@ OpenSCAP then affords us a view into the current images level of security compli
 </p>
 
 <p>
-In turn we help upstream with the <a href="https://github.com/OpenSCAP/scap-security-guide/tree/master/OpenStack/RHEL-OSP/7">OpenStack SCAP Content</a> to insure the latest security hardening checks are present from <a href="https://wiki.openstack.org/wiki/Security_Notes">OpenStack Security Notes</a>  
+In turn its expected to help upstream with the <a href="https://github.com/OpenSCAP/scap-security-guide/tree/master/OpenStack/RHEL-OSP/7">OpenStack SCAP Content</a> to insure the latest security hardening checks are present from <a href="https://wiki.openstack.org/wiki/Security_Notes">OpenStack Security Notes</a>  
 </p>
 
 <p>
-A collection of  <code>diskimage-builder</code> elements can then be developed to 'harden' each image before its released to CDN and the image tagged
-somehow to denote it is an hardened image, for example <code>undercloud_sec.qcow2</code> 
+A collection of  <code>diskimage-builder</code> elements can then be developed to 'harden' each image before its released to CDN. The image can then tagged
+to denote it is an hardened image, for example <code>undercloud_sec.qcow2</code> or <code>rhel-guest-security-image-7.2-20160302.0.x86_64.qcow2</code>
 </p>
 </div>
 </div>
@@ -245,15 +246,15 @@ somehow to denote it is an hardened image, for example <code>undercloud_sec.qcow
 <h2 id="sec-3"><span class="section-number-2">3</span> Puppet-module &amp; Heat Based Hardening</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-For tasks that are too specific to be baked into an image, the standard TripleO services approach is used.  
+For tasks that are too specific to be baked into an image or require post package installation config changes, the standard TripleO services approach could be  used.  
 </p>
 
 <p>
-In turn this could be leveraged further in composable roles - with hardened roles being made available.
+In turn this could be leveraged further in composable roles - with hardened roles being made available for overcloud provisioning. 
 </p>
 
 <p>
-For example a hardened role could point to additional "hardened services" in the resource registry, as follows:
+For example a hardened role could point to additional "hardened services" alongside standard services in the resource registry, as follows:
 </p>
 
 <div class="org-src-container">
@@ -262,14 +263,14 @@ For example a hardened role could point to additional "hardened services" in the
   <span style="color: #7590db;">CountDefault</span>: 1
   <span style="color: #7590db;">HostnameFormatDefault</span>: <span style="color: #2d9574;">'%stackname%-novacompute-sec-%index%'</span>
   <span style="color: #7590db;">ServicesDefault</span>:
-    - OS::TripleO::HardenedServices::CACerts
+    - OS::TripleO::HardenedServices::Keystone
     - OS::TripleO::HardenedServices::CephClient
     - OS::TripleO::HardenedServices::CephExternal
 </pre>
 </div>
 
 <p>
-The advantage of this, is that existing services can be copied with extra hardening logic added.
+The advantage of this, is that existing services can be copied and then extra hardening logic added.
 </p>
 
 <p>
@@ -289,7 +290,7 @@ Operators can then pass the hardened role as an arg to <code>openstack overcloud
 </div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Luke Hinds</p>
-<p class="date">Created: 2016-11-01 Tue 17:42</p>
+<p class="date">Created: 2016-11-01 Tue 20:30</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org-mode</a> 8.3.6)</p>
 </div>
 </footer>
