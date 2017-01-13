@@ -5,6 +5,7 @@ title: Dlrn for RDO package builds
 
 What follows are the steps to create a spec file, test that spec file in a local
 dlrn instance, and then submit the file as a patch to rdo.review.
+
 ## Prepare Environment
 
 ```
