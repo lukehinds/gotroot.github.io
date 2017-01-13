@@ -1,10 +1,9 @@
 ---
 layout: post
 title: Dlrn for RDO package builds
-bigimg: /img/header_tech_2.jpg
 ---
 
-# Prepare Environment
+## Prepare Environment
 
 ```
 dnf install git createrepo python-virtualenv mock gcc \
@@ -12,19 +11,19 @@ dnf install git createrepo python-virtualenv mock gcc \
                   openssl-devel mock
 ```
 
-## Add user to mock group
+### Add user to mock group
 
     usermod -a -G mock [user name]
 
 
-## Install DLRN
+### Install DLRN
 
 -   Create a master directory to keep your tools in `mkdir ~/buildtools`
 -   Clone the **DLRN** repository `cd ~/buildtools; git clone https://github.com/openstack-packages/DLRN`
 -   Clone **RDOINFO** repository `git clone https://review.rdoproject.org/r/rdoinfo`
 
 
-## dlrn.cfg
+### dlrn.cfg
 
 Grab a dlrn.cfg (no need for any customizations)
 
@@ -35,7 +34,7 @@ sudo mv dlrn.cfg /etc/mock
 ```
 
 
-## Install VirtualEnv and DLRN Dependencies
+### Install VirtualEnv and DLRN Dependencies
 
 Create a virtualenv (run these commands from the `DLRN` directory:
 
@@ -64,9 +63,9 @@ Run setuptools
     python setup.py install
 
 
-# Set up project and spec file
+## Set up project and spec file
 
-## rdo.yaml
+### rdo.yaml
 
 Edit the `rdotools/rdo.yml` file in the repo and add a block like this for your project:
 
@@ -88,7 +87,7 @@ Edit the `rdotools/rdo.yml` file in the repo and add a block like this for your 
 `rpmfactory-client` is for a CLI client, e.g. **neutronclient**
 
 
-## Spec file
+### Spec file
 
 Create a directory `DLRN/data/{openstack:python}-networking-{project}_distro` for your spec file.
 
@@ -110,26 +109,26 @@ Once your spec file is ready, you can test the build with the following command-
 
     dlrn --config-file projects.ini --package-name python-networking-bagpipe --dev --info-repo ../rdoinfo
 
-# Final Report
+## Final Report
 
 Some people set up an Apache `VirtualHost` to view reports etc, but I honestly find your browser handles File Directories perfectly ok.
 
     file:///home/<USER>/buildtools/DLRN/data/repos/report.html
 
 
-# Submitting a patch
+## Submitting a patch
 
 There are two things you have to do to submit a patch
 
 
-## Create a BZ
+### Create a BZ
 
 You first need to create a bugzilla in which you reference your spec file and source RPM:
 
 [Here is an example](https://bugzilla.redhat.com/show_bug.cgi?id=1379646)
 
 
-## Submit your patch to review.rdoproject.org
+### Submit your patch to review.rdoproject.org
 
 -   Get your repository set up (same as review.openstack.org) using `cd ~/buildtools/rdoinfo; git review -s`
 
@@ -164,7 +163,7 @@ Note, the commit message needs to be of the following format:
 You can then submit for review `git review`
 
 
-# Billy Bonus - using pyp2rpm
+## Billy Bonus - using pyp2rpm
 
 Pyprpm can be used to create a spec file from pypi package
 
