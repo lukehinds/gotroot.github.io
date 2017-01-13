@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Puppet Master / Agent Setup using vagrant and libvirt
-bigimg: /img/entropyequation.gif
 ---
 
 This guide will provide to vagrant vm's sutiable for quickly testing puppet code.
