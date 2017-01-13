@@ -10,7 +10,9 @@ Ideally these should be ported into `Vagrantfile`. I will try and do that someti
 
 This guide assumes you already have kvm/qemu and libvirt installed.
 
-== Install libvirt provider in vagrant on Arch ==
+## Install libvirt provider in vagrant on Arch
+
+
 
 ```
 sudo pacman -S vagrant
@@ -21,11 +23,11 @@ GEM_HOME=~/.vagrant.d/gems GEM_PATH=$GEM_HOME:/opt/vagrant/embedded/gems PATH=/o
 vagrant plugin install vagrant-libvirt
 ```
 
-== Install libvirt provider on Fedora ==
+## Install libvirt provider on Fedora
 
 https://developer.fedoraproject.org/tools/vagrant/vagrant-libvirt.html
 
-== Master Setup ==
+## Master Setup
 
 Create a `puppermaster` folder and grab a CentOS 7 Box
 
@@ -33,13 +35,13 @@ Create a `puppermaster` folder and grab a CentOS 7 Box
 
 and then `vagrant ssh` into your new machine to peform the following steps:
 
-=== Set a hostname ===
+### Set a hostname
 
 ```
 sudo hostnamectl set-hostname puppetmaster
 ```
 
-=== Update /etc/hosts ===
+### Update /etc/hosts
 
 Get the IP address from the puppetmaster `ip a` and make an entry into `/etc/hosts` in the agent
 
@@ -49,20 +51,20 @@ Get the IP address from the puppetmaster `ip a` and make an entry into `/etc/hos
 192.168.121.82     puppetagent
 ```
 
-=== Install the RDO repo ===
+### Install the RDO repo
 
 ```
 sudo yum install -y https://rdoproject.org/repos/rdo-release.rpm
 ```
 * Note: I use the rdo repository, as I need to use the same puppet version as RDO OpenStack
 
-=== Update ===
+### Update
 
 ```
 sudo yum update -y
 ```
 
-=== Install Puppet Server ===
+### Install Puppet Server
 
 ```
 sudo yum install -y puppet-server
@@ -75,7 +77,7 @@ certname = puppetmaster
 dns_alt_names = puppetmaster
 ```
 
-=== Generate a new certificate ===
+### Generate a new certificate
 
 Start the server to create a puppetmaster certificate
 
@@ -83,7 +85,7 @@ Start the server to create a puppetmaster certificate
 sudo puppet master --verbose --no-daemonize
 ```
 
-== Client Setup ==
+## Client Setup
 
 ```
 sudo yum install -y https://rdoproject.org/repos/rdo-release.rpm
@@ -99,7 +101,7 @@ sudo vi /etc/default/puppet
 
 And add a single line `START=yes`
 
-=== Update /etc/hosts ===
+### Update /etc/hosts
 
 Get the IP address from the puppetmaster `ip a` and make an entry into `/etc/hosts` in the agent
 
@@ -109,7 +111,7 @@ Get the IP address from the puppetmaster `ip a` and make an entry into `/etc/hos
 192.168.121.126     puppetmaster
 ```
 
-=== Make agent certifcate request ===
+### Make agent certifcate request
 
 
 Start the server again
@@ -155,13 +157,13 @@ We do however need to sign the agents certifcate
 
 You're now ready to start your puppet module development. Just remember to run `puppet agent -t --verbose --server=puppetmaster` each time and if your puppet module changes root owned files, then you will need to run `puppet agent` with `sudo`.
 
-== Some tips ==
+## Some tips
 
 The puppet apply command allows you to execute manifests that are not related to the main manifest, ondemand. It only applies the manifest to the node that you run the apply from. Here is an example:
 
 `sudo puppet apply /etc/puppet/modules/test/init.pp`
 
-== A simple test ==
+## A simple test
 
 sudo vi /etc/puppet/manifests/site.pp
 
@@ -172,7 +174,7 @@ puppetagent ~]$ cat /tmp/example-ip
 Here is my Public IP Address: 192.168.121.82
 ```
 
-== Back up ==
+## Back up
 
 Its worth snapshotting the images, in case you want to roll back to an unused instance
 
