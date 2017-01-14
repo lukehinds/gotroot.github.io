@@ -120,53 +120,6 @@ Some people set up an Apache `VirtualHost` to view reports etc, but I honestly f
     file:///home/<USER>/buildtools/DLRN/data/repos/report.html
 
 
-## Submitting a patch
-
-There are two things you have to do to submit a patch
-
-
-### Create a BZ
-
-You first need to create a bugzilla in which you reference your spec file and source RPM:
-
-[Here is an example](https://bugzilla.redhat.com/show_bug.cgi?id=1379646)
-
-
-### Submit your patch to review.rdoproject.org
-
--   Get your repository set up (same as review.openstack.org) using `cd ~/buildtools/rdoinfo; git review -s`
-
--   Create a branch `git checkout -b networking-bagpipe`
-
--   Make you're changes to `rdo.yml`
-
--   Add them.. `git add rdo.yml`
-
--   commit the changes.. `git commit -a`
-
-Note, the commit message needs to be of the following format:
-
-    Adding <PACKAGE NAME> package
-
-    <PACKAGE DESCRIPTION>
-
-    BZ Review: <BUGZILLA URL>
-
-    Initially set under-review until distgit import is complete
-
-**For example**
-
-    Adding python-networking-bagpipe package
-
-    Mechanism driver for Neutron ML2 plugin using BGP VPNs
-
-    BZ review: https://bugzilla.redhat.com/show_bug.cgi?id=1379646
-
-    Initially set under-review until distgit import is complete
-
-You can then submit for review `git review`
-
-
 ## Billy Bonus - using pyp2rpm
 
 Pyprpm can be used to create a spec file from pypi package
