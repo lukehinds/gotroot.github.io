@@ -8,11 +8,11 @@ dlrn instance, and then submit the file as a patch to rdo.review.
 
 ## Prepare Environment
 
-```
+{% highlight js %}
 dnf install git createrepo python-virtualenv mock gcc \
                   redhat-rpm-config rpmdevtools httpd libffi-devel \
                   openssl-devel mock
-```
+{% endhighlight %}
 
 ### Add user to mock group
 
