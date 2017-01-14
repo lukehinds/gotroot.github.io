@@ -8,11 +8,10 @@ dlrn instance, and then submit the file as a patch to rdo.review.
 
 ## Prepare Environment
 
-{% highlight js %}
-dnf install git createrepo python-virtualenv mock gcc \
-                  redhat-rpm-config rpmdevtools httpd libffi-devel \
-                  openssl-devel mock
-{% endhighlight %}
+    dnf install git \
+            createrepo python-virtualenv mock gcc \
+            redhat-rpm-config rpmdevtools httpd libffi-devel \
+            openssl-devel mock
 
 ### Add user to mock group
 
@@ -72,6 +71,7 @@ Run setuptools
 
 Edit the `rdotools/rdo.yml` file in the repo and add a block like this for your project:
 
+{% highlight yaml %}
     - project: networking-bagpipe
       name: python-networking-bagpipe
       tags:
@@ -82,6 +82,7 @@ Edit the `rdotools/rdo.yml` file in the repo and add a block like this for your 
       upstream: https://github.com/openstack/networking-bagpipe
       maintainers:
         - lhinds@redhat.com
+{% endhighlight %}
 
 `rpmfactory-lib` is for python projects e.g. **python-networking-bagpipe**
 
