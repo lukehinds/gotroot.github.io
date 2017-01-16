@@ -4,9 +4,6 @@ title: Rust 101
 subtitle: Simple Notes on Rust Lang
 ---
 
-Rust 101
-========
-
 Basic observations on Rust.
 
 Boxes
