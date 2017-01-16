@@ -15,6 +15,7 @@ This guide assumes you already have kvm/qemu and libvirt installed.
 
 ```
 sudo pacman -S vagrant
+
 CONFIGURE_ARGS='with-ldflags=-L/opt/vagrant/embedded/lib with-libvirt-include=/usr/include/libvirt with-libvirt-lib=/usr/lib'
 
 GEM_HOME=~/.vagrant.d/gems GEM_PATH=$GEM_HOME:/opt/vagrant/embedded/gems PATH=/opt/vagrant/embedded/bin:$PATH
@@ -42,7 +43,7 @@ sudo hostnamectl set-hostname puppetmaster
 
 ### Update /etc/hosts
 
-Get the IP address from the puppetmaster `ip a` and make an entry into `/etc/hosts` in the agent
+Get the IP address from the puppetagent`ip a` and make an entry into `/etc/hosts`.
 
 ```
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
