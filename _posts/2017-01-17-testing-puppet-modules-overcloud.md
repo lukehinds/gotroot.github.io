@@ -9,7 +9,9 @@ a long drawn out process to go through cycles of making code changes, deploying
 the entire overcloud, checking the results to then repeat the cycle again.
 
 This quick tutorial will go through how to inject a puppet module into your
-overcloud and then use `puppet apply` to test a single puppet module to test.
+overcloud and then use `puppet apply` to test a specific puppet module of your
+choosing.
+
 I guess this will likely be obvious to already seasoned puppet developers, but
 for someone like myself who has just crossed over from the python world, this
 helped me save a lot of time during debugging.
