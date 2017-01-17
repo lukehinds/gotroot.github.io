@@ -86,7 +86,7 @@ openstack overcloud deploy --templates ~/tripleo-heat-templates -e
 ## Running puppet apply locally
 
 Let's now assume something is wrong in our code, and we need to make some small
-tweaks to debug. We can now do so directory on the overcloud.
+tweaks to debug. We can now do so directly on the overcloud.
 
 ssh to an overcloud node which contains your puppet module (this maybe
 contingent upon how you have set up your `roles_data.yaml`) which will already be
