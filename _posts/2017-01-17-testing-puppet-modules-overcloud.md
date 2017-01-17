@@ -88,32 +88,6 @@ openstack overcloud deploy --templates ~/tripleo-heat-templates -e
 Let's now assume something is wrong in our code, and we need to make some small
 tweaks to debug. We can now do so directly on the overcloud.
 
-ssh to an overcloud node which contains your puppet module (this maybe
-contingent upon how you have set up your `roles_data.yaml`) which will already be
-present on your undercloud node.
-
-```
-upload-puppet-modules -d ~/puppet-modules
-```
-
-This will now tarball our `puppet-modules/horizon` directory and upload it to
-swift, where it will then be deployed to every overcloud node via heat and
-os-config.
-
-Next we deploy the overcloud itself, while sourcing a the TripleO templates we
-cloned and cherry picked with our patch, and an enviroment file to provide the
-hiera data needed for horizons password_validaton fields.
-
-```
-openstack overcloud deploy --templates ~/tripleo-heat-templates -e
-~/tripleo-heat-templates/enviroments/horizon_password_validation.yaml
-```
-
-## Running puppet apply locally
-
-Let's now assume something is wrong in our code, and we need to make some small
-tweaks to debug. We can now do so directory on the overcloud.
-
 ssh from to an overcloud node which contains your puppet module (this maybe
 contigent upon how you have set up your `roles_data.yaml`). Note that you will
 likely ssh as `heat-admin`, and you may need to `sudo su` to root to run
@@ -128,12 +102,12 @@ From here, we run `puppet apply`, but we pass in the name of the module class we
 wish to run (if we omit this, puppet will run all manifests and you will have
 a long wait again).
 
-We will use the class name of 'horizon' which can be seen in the [init.pp](https://github.com/openstack/puppet-horizon/blob/master/manifests/init.pp#L387) file in the `puppet-horizon` puppet module. 
+We will use the class name of 'horizon' which can be seen in the [init.pp](https://github.com/openstack/puppet-horizon/blob/master/manifests/init.pp#L387) file in the `puppet-horizon` puppet module.
 
 ```
 puppet apply -e 'include horizon'
 ```
 
-This will now run the manifest (should take about 15 seconds) and execute your puppet code. 
+This will now run the manifest (should take about 15 seconds) and execute your puppet code.
 
 If you're not happy with the result for whatever reason, then you can directly tailor the `/etc/puppet/modules/horizon/*` files, or the hiera data found in `/etc/puppet/hieradata/*`, and then just re-run `puppet apply -e 'include horizon'` again.
