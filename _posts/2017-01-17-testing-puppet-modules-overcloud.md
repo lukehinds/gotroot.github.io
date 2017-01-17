@@ -4,8 +4,8 @@ title: Debugging Puppet Modules in the Overcloud
 ---
 
 I have been working a lot recently on OpenStack TripleO via Puppet module
-development. When wanting to test any code or changes, it is quite
-a long drawn out process to go through cycles of making code changes, deploying
+development. When wanting to test any code or changes is quite
+a long drawn out process to go through cycles of making tweaks, deploying
 the entire overcloud, checking the results to then repeat the cycle again.
 
 This quick tutorial will go through how to inject a puppet module into your
