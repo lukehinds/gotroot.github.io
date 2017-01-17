@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Testing Puppet Modules in the Overcloud
+title: Debugging Puppet Modules in the Overcloud
 ---
 
 I have been working a lot recently on OpenStack TripleO via Puppet module
