@@ -22,7 +22,7 @@ and its related tripleo-heat-templates. The module itself is situated in the
 the horizon `password_validaton` fields into `local_settings`.
 
 I am going to assume you already have an undercloud deployed, and base the
-tutorial at that juncture (before the overcloud is deployed).
+tutorial at that juncture (after image upload and introspection, and before the overcloud is deployed).
 
 ## Uploading Puppet Modules
 
@@ -48,23 +48,22 @@ git fetch git://git.openstack.org/openstack/puppet-horizon refs/changes/53/41365
 Note: The above patch may well already be merged. If that is the case, you  of
 course do not need to cherry pick any patches.
 
-Next we grab are `tripleo-heat-templates` repository, to allow us to have some
+Next we clone our `tripleo-heat-templates` repository, to allow us to have some
 hiera data for our manifest parameters.
 
 ```
 git clone git://git.openstack.org/openstack/puppet-horizon horizon
 ```
 
-And grab the patch we need:
+And get the patch we need:
 
 ```
 git fetch git://git.openstack.org/openstack/tripleo-heat-templates refs/changes/44/413644/5 && git checkout FETCH_HEAD
 ```
 
-Assuming you have already done an overcloud image upload, and performed
-introspection, lets now deploy our patches to the overcloud.
+We will now deploy our patches to swift, for inject into the overcloud.
 
-First we use a tool `upload-puppet-modules` which will already be present on
+For this we will use a tool called `upload-puppet-modules` which will already be present on
 your undercloud node.
 
 ```
