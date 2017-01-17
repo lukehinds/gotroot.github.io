@@ -3,13 +3,16 @@ layout: post
 title: Testing Puppet Modules in the Overcloud
 ---
 
-I have been working a lot recently on OpenStack TripleO via Puppet Manifest
+I have been working a lot recently on OpenStack TripleO via Puppet module
 development. When wanting to test any code or changes, it is quite
 a long drawn out process to go through cycles of making code changes, deploying
 the entire overcloud, checking the results to then repeat the cycle again.
 
 This quick tutorial will go through how to inject a puppet module into your
 overcloud and then use `puppet apply` to test a single puppet module to test.
+I guess this will likely be obvious to already seasoned puppet developers, but
+for someone like myself who has just crossed over from the python world, this
+helped me save a lot of time during debugging.
 
 For reference we will use a current patch I am working on that is yet to merge,
 and its related tripleo-heat-templates. The module itself is situated in the
