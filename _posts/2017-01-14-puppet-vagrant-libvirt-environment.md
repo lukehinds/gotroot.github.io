@@ -3,7 +3,7 @@ layout: post
 title: Puppet Master / Agent Setup using vagrant and libvirt
 ---
 
-This guide will provide to vagrant vm's sutiable for quickly testing puppet code.
+This guide will provide two vagrant vm's sutiable for quickly testing puppet code.
 
 Ideally these should be ported into `Vagrantfile`. I will try and do that sometime.
 
