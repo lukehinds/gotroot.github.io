@@ -62,7 +62,7 @@ And get the patch we need:
 git fetch git://git.openstack.org/openstack/tripleo-heat-templates refs/changes/44/413644/5 && git checkout FETCH_HEAD
 ```
 
-We will now deploy our patches to swift, for inject into the overcloud.
+We will now deploy our patches to swift, for injection into the overcloud.
 
 For this we will use a tool called `upload-puppet-modules` which will already be present on
 your undercloud node.
@@ -89,8 +89,9 @@ openstack overcloud deploy --templates ~/tripleo-heat-templates -e
 Let's now assume something is wrong in our code, and we need to make some small
 tweaks to debug. We can now do so directly on the overcloud.
 
-ssh from to an overcloud node which contains your puppet module (this maybe
-contigent upon how you have set up your `roles_data.yaml`). Note that you will
+ssh to an overcloud node which contains your puppet module (this maybe
+contigent upon how you have set up your `roles_data.yaml` in this case its the
+controller as we are playing with the horizon dashbaord). Note that you will
 likely ssh as `heat-admin`, and you may need to `sudo su` to root to run
 `puppet-apply`, as most of the time you will be asking puppet to change files
 owned by root.
