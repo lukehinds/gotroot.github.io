@@ -49,10 +49,11 @@ Note: The above patch may well already be merged. If that is the case, you  of
 course do not need to cherry pick any patches.
 
 Next we clone our `tripleo-heat-templates` repository, to allow us to have some
-hiera data for our manifest parameters.
+hiera data for our manifest parameters. Note this should be done from with the
+`/home/stack` $HOME directory (not puppet-modules)
 
 ```
-git clone git://git.openstack.org/openstack/puppet-horizon horizon
+git clone git://git.openstack.org/openstack/tripleo-heat-templates
 ```
 
 And get the patch we need:
