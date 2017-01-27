@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Dlrn for RDO package builds
+title: DLRN for RDO package builds
+categories: nfvpe
 ---
 
 What follows are the steps to create a spec file, test that spec file in a local
@@ -72,19 +73,19 @@ Run setuptools
 Edit the `rdotools/rdo.yml` file in the repo and add a block like this for your project:
 
 {% highlight yaml %}
-    - project: networking-bagpipe
-      name: python-networking-bagpipe
+    - project: myproject
+      name: python-myproject
       tags:
         under-review:
         #ocata:
         #ocata-uc:
       conf: rpmfactory-lib
-      upstream: https://github.com/openstack/networking-bagpipe
+      upstream: https://github.com/openstack/myproject
       maintainers:
-        - lhinds@redhat.com
+        - someguy@domain.com
 {% endhighlight %}
 
-`rpmfactory-lib` is for python projects e.g. **python-networking-bagpipe**
+`rpmfactory-lib` is for python projects e.g. **python-myproject**
 
 `rpmfactory-core` is for a main openstack project e.g. **murano**
 
@@ -97,21 +98,21 @@ Create a directory `DLRN/data/{openstack:python}-networking-{project}_distro` fo
 
 **For example**
 
-    DLRN/data/python-networking-bagpipe_distro
+    DLRN/data/python-myproject_distro
 
 **Note:** I'ts important that the `_distro` string of your spec files directory contains an underscore.
 
 Copy / Move your spec file into the `_distro` directory referenced above.
 
-[Here](https://raw.githubusercontent.com/lukehinds/rdo-packaging/master/python-networking-bagpipe/SPEC/python3-networking-bagpipe.spec) is an example spec file used for python-networking-bagpipe
+[Here](https://raw.githubusercontent.com/lukehinds/rdo-packaging/master/python-networking-bagpipe/SPEC/python3-networking-bagpipe.spec) is an example spec file used for project python-networking-bagpipe
 
 Once your spec file is ready, you can test the build with the following command-line:
 
-    dlrn --config-file projects.ini --package-name python-networking-bagpipe --dev --info-repo <path to the rdoinfo directory>
+    dlrn --config-file projects.ini --package-name python-myproject --dev --info-repo <path to the rdoinfo directory>
 
 **For example:**
 
-    dlrn --config-file projects.ini --package-name python-networking-bagpipe --dev --info-repo ../rdoinfo
+    dlrn --config-file projects.ini --package-name python-myproject --dev --info-repo ../rdoinfo
 
 ## Final Report
 
