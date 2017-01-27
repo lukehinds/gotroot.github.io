@@ -117,10 +117,3 @@ gems:
 exclude: [vendor]
 
 theme: jekyll-theme-minimal
-
-collections:
-  my_categories:
-    output: true
-    permalink: /blog/category/:name/
-
-
