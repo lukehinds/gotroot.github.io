@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Puppet Master / Agent Setup using vagrant and libvirt
+categories: nfvpe
 ---
 
 This guide will provide two vagrant vm's sutiable for quickly testing puppet code.
