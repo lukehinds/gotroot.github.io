@@ -1,5 +1,7 @@
 ---
 layout: page
-title:  String Post Title
- ---
+title:  "Test Page"
+permalink:   /testpage/
+tagline : "test tag line"
+---
 
