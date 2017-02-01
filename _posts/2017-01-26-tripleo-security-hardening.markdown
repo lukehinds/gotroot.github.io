@@ -10,8 +10,8 @@ puppet-modules. The desired outcome of this work is to assist
 operators meet the various compliance standards that exist in the private and
 public sectors of IT security, using an automated approach.
 
-This blog post will be a round up of the patches merged into Ocata and
-looking forward to the next cycle of Pike.
+This blog post will be a round up of the patches merged into Ocata. I will try
+to follow up soon with a post on plans to the next cycle of Pike.
 
 Note that this is not an exhaustive list of all hardening checks within
 OpenStack and Linux, the following are patches to amend values not already set
