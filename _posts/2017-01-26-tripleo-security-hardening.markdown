@@ -142,7 +142,7 @@ many events such as someone changing the system time, changes to Mandatory
 
 All audit rule entries can now be managed via [puppet-tripleo](https://github.com/openstack/puppet-tripleo/commit/eb14c2a9f7acd6a7949e7aee91687756731f93db) mapped to a yaml [tripleo-heat-template-template](https://github.com/openstack/tripleo-heat-templates/commit/afdc138987db8246be1f3a0948967f10c3011bb8) file.
 
-Rules can be entered as follows, and injected into `/etc/audit/audit.rules. The
+Rules can be entered as follows, and injected into `/etc/audit/audit.rules`. The
 `auditd` service will also be verified as runnning.
 
 {% highlight yaml %}
