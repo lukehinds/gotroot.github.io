@@ -142,7 +142,7 @@ Having a system capable of recording all audit events is key for troubleshooting
 and peforming analysis of events that led to a certain outcome. Red Hat
 Enterprise Linux already has a complete audit system which is capable of logging
 many events such as someone changing the system time, changes to Mandatory
-/  Discretionary Access Control. A complete list can be found here.
+/  Discretionary Access Control.
 
 All audit rule entries can now be managed via [puppet-tripleo](https://github.com/openstack/puppet-tripleo/commit/eb14c2a9f7acd6a7949e7aee91687756731f93db) mapped to a yaml [tripleo-heat-template-template](https://github.com/openstack/tripleo-heat-templates/commit/afdc138987db8246be1f3a0948967f10c3011bb8) file.
 
