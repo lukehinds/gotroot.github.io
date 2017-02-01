@@ -160,5 +160,5 @@ parameter_defaults:
       order  : 2
 {% endhighlight %}
 
-A full example of auditd rules can be found
+A full example of audit rules that can be set using Tripleo can be found
 [here](https://raw.githubusercontent.com/openstack/tripleo-heat-templates/afdc138987db8246be1f3a0948967f10c3011bb8/environments/auditd.yaml)
