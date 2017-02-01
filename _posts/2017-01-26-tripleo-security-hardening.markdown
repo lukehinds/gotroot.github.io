@@ -82,10 +82,6 @@ HORIZON_CONFIG["password_validator"] = {
 It is now possible to inject your own password validation regex via a heat
 template enviroment file using the following patches in [puppet-horizon](https://github.com/openstack/puppet-horizon/commit/047e3b5c329427a45a33d6f575f295bea56636d3) and [tripleo](https://github.com/openstack/tripleo-heat-templates/commit/0e18ac5fdec4b9eeaef7f6aa83c466e86415e4e2)
 
-As of the following patches in
-[puppet-horizon](https://github.com/openstack/puppet-horizon/commit/047e3b5c329427a45a33d6f575f295bea56636d3) and [tripleo-heat-templates](https://github.com/openstack/tripleo-heat-templates/commit/0e18ac5fdec4b9eeaef7f6aa83c466e86415e4e2) the password validation regular expression
-pattern and the help text can be injected.
-
 An enviroment file can be passed to `openstack overcloud deploy --templates -e passsword_validation.yaml'
 
 `password_validation.yaml:`
