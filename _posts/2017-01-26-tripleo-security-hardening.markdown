@@ -38,7 +38,7 @@ patch](https://github.com/openstack/tripleo-heat-templates/commit/ca122325ddb9b1
 
 By utlising TripleO Heat templates, it then becomes possible to toggle this
 value to false (should someone have a reason to do that) using an enviroment
-file and passing in a value of `horizon::enforce_password_check: true`
+file and passing in a value of `horizon::enforce_password_check: false`
 
 ### Disallow Iframe Embed
 
