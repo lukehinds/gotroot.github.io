@@ -165,7 +165,7 @@ A full example of audit rules that can be set using Tripleo can be found
 Pike will include changes sufficient enough to provide full DISA STIG
 compliance.
 
-It is then expected that full compliance will be available through the use of
+It is then expected that full security Hardening will be available through the use of
 a single environment file, for example:
 
 `openstack overcloud deploy --templates -e disa-stig-compliance.yaml`
@@ -200,7 +200,7 @@ execution of AIDE integrity verification.
 
 Currently overcloud images contain a single flat partition. Ongoing work in
 Ironic and Disc Image Builder will make it possible implement to allow layouts
-such as '/var/log/audit' '/tmp' as seperate volumes in heat template formatting.
+such as `/var/log/audit` `/tmp` as seperate volumes in heat template formatting.
 
 ## FIPS Kernel
 
@@ -242,3 +242,6 @@ Restrict Access to Kernel Message Buffer
 * Do Not Allow SSH Environment Options
 * Use Only Approved Ciphers
 * Use Only FIPS Approved MACs
+
+This is not a final list, and additions may be made as the work proceeds, but it
+provides a decent overview of changes 
