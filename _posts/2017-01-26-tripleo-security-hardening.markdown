@@ -158,3 +158,87 @@ parameter_defaults:
 
 A full example of audit rules that can be set using Tripleo can be found
 [here](https://raw.githubusercontent.com/openstack/tripleo-heat-templates/afdc138987db8246be1f3a0948967f10c3011bb8/environments/auditd.yaml)
+
+
+# Pike work items
+
+Pike will include changes sufficient enough to provide full DISA STIG
+compliance.
+
+It is then expected that full compliance will be available through the use of
+a single environment file, for example:
+
+`openstack overcloud deploy --templates -e disa-stig-compliance.yaml`
+
+## CADF Managament
+
+Configure openstack services to emit audit events using CADF
+
+## Further Horizon security
+
+Configurable values for `CSRF_COOKIE_SECURE` and further Horizon values.
+
+## Kernel Parameter Hardening
+
+Various sysctl values will be manageable via tripleo-heat-templates, including
+values for Restricting Access to Kernel Message Buffer, Disable ICMP Redirects
+and Disable KDump Kernel Crash Analyzer (kdump).
+
+## pam.d management
+
+Values to Limit Password Reuse, Set Lockout Time For Failed Password Attempts,
+Set Password Minimum Length, and other attributes such as Minimum Digits,
+Minimum number of consecutive characters, retry prompts per session.
+
+## Install and Manage AIDE
+
+AIDE (Advanced Intrusion Detection Environment) available to nodes, along with
+the option to build an itegrity database and configuration of a periodic
+execution of AIDE integrity verification.
+
+## Partitioning
+
+Currently overcloud images contain a single flat partition. Ongoing work in
+Ironic and Disc Image Builder will make it possible implement to allow layouts
+such as '/var/log/audit' '/tmp' as seperate volumes in heat template formatting.
+
+## FIPS Kernel
+
+A full FIPS Compliant Kernel as a deploy option.
+
+## Restrict Dynamic Mounting and Unmounting of Filesystems
+
+* Disable Modprobe Loading of USB Storage Driver
+* Disable Kernel Support for USB via Bootloader Configuration
+* Disable Booting from USB Devices in Boot Firmware
+
+## Disable Core Dumps
+
+Disable Core Dumps for SUID programs
+
+## Enable ExecShield
+
+Enable Randomized Layout of Virtual Address Space.
+
+## Kernel Message Buffer
+
+Restrict Access to Kernel Message Buffer
+
+## SSH Changes
+
+* Allow Only SSH Protocol 2
+* Disable GSSAPI Authentication
+* Disable Kerberos Authentication
+* Enable Use of StictModes
+* Enable Use of Privilege Separation
+* Disable Compression Or Set Compression to delayed
+* Set SSH Idle Timeout Interval
+* Set SSH Client Alive Count
+* Disable SSH Support for .rhosts Files
+* Disable Host-Based Authentication
+* Enable Encrypted X11 Fordwarding
+* Disable SSH Root Login
+* Disable SSH Access via Empty Passwords
+* Do Not Allow SSH Environment Options
+* Use Only Approved Ciphers
+* Use Only FIPS Approved MACs
