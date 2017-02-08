@@ -2,6 +2,7 @@
 layout: post
 title: TripleO Security Hardening
 subtitle: Work completed in Ocata
+categories: openstack
 ---
 
 Over this Ocata cycle I have been working on the automation of security
