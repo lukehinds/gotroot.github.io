@@ -1,7 +1,6 @@
 ---
 layout: post
 title: DLRN for RDO package builds
-categories: nfvpe
 ---
 
 What follows are the steps to create a spec file, test that spec file in a local
