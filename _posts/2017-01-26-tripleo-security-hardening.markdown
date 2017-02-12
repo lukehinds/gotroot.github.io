@@ -2,7 +2,8 @@
 layout: post
 title: TripleO Security Hardening
 subtitle: Work completed in Ocata
-categories: openstack
+tags:
+  nfvpe
 ---
 
 Over this Ocata cycle I have been working on the automation of security
@@ -245,4 +246,4 @@ Restrict Access to Kernel Message Buffer
 * Use Only FIPS Approved MACs
 
 This is not a final list, and additions may be made as the work proceeds, but it
-provides a decent overview of changes 
+provides a decent overview of changes
