@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Debugging Puppet Modules in the Overcloud
-categories: nfvpe
 ---
 
 I have recently been working a lot on OpenStack TripleO via Puppet module
