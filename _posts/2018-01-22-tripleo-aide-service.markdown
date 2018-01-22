@@ -6,7 +6,7 @@ tags:
   nfvpe
 ---
 
-Just a quick post about some [patches](https://review.openstack.org/#/q/topic:bp/tripleo-aide-database+(status:open+OR+status:merged) that have landed in TripleO (upstream Red Hat
+Just a quick post about some [patches](https://review.openstack.org/#/q/topic:bp/tripleo-aide-database+(status:open+OR+status:merged)) that have landed in TripleO (upstream Red Hat
 OSP Director) to deploy AIDE to the overcloud.
 
 ## What's AIDE?
