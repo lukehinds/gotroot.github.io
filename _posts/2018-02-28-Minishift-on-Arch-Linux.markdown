@@ -46,7 +46,7 @@ Add execution permissons to the minishift CLI.
 chmod +x minishift-1.13.1-linux-amd64/minshift
 ```
 
-If your default network is not running, start it (No idea why, but the arch maintainer for libvirt always stops all networks on update and leaves them disabled)
+If your default network is not running, start it (No idea why, but the arch maintainer for libvirt always stops all networks on update and leaves them inactive post updgrade)
 
 ```
 sudo virsh net-start default
