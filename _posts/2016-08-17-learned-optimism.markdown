@@ -23,14 +23,14 @@ negatively by:
 
 1. Thinking this is just temporary success
 2. Won't help him in other situations than this specific one
-3. Are caused by the situation more than by his own competence.
+3. Are caused by the situation more than by his own competence
 
 Optimists explain situations exactly the other way around. They tend to think
 that negative events:
 
 1. Are just a temporary setback
 2. Only affect thìs situation
-3. Are externally caused (not their own fault
+3. Are externally caused (not their own fault)
 
 Positive things are also explained positively by the optimistic thinker. He will
 think:
@@ -48,4 +48,4 @@ habit.
 It is a self-fulfilling prophecy: by thinking you have no way of influencing a
 bad situation, this becomes true. Optimists, on the other hand, build hope and
 maintain a positive self-image. They then tend to perform better at school
-and/or work, and are, on average, healthier.
+and/or work, and are, on average, healthier and happier.
