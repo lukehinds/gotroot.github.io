@@ -5,13 +5,34 @@ title: Trusted Platform Module 2.0 on RHEL 7.5
 
 Support for TPM 2.0 is now available in RHEL 7.5.
 
-What follows is a very basic set of steps to getting started on the TPM 2.0
-tools. This is really catered towards developers wanting to get started or
-anyone curious around TPM technology.
+What follows is a very basic set of steps to getting up and running on the TPM 2.0
+tools just released in RHEL 7.5. This is really catered towards developers wanting to get bootstrapped with an environment or anyone curious about TPM technology.
 
 I will make a follow up post with enabling Intel TXT / trusted boot in RHEL 7.5.
 
-For an overview on TPM technology, [WiKiPedia](https://en.wikipedia.org/wiki/Trusted_Platform_Module) gives a decent run down.
+# What are Trusted Platform Modules (TPM)?
+
+Put simply, its a tamper proof cryptographic processor in the form of a hardware
+Chip placed onto a motherboard that connects to the LPC bus. It contains a
+Private Key (Storage Root Key) that can sign user created keys, that in turn can sign object hashes  and allow others to attest said objects have not been
+tampered with.
+
+The objects themselves could be firmware, boot loaders, kernels,
+config files, blobs / binaries , images (containers / VM's) etc.
+
+It is especially useful when it comes to trusting infrastructure. One use case
+for a TPM is trusting a cloud infrastructure hosted outside of your own premise
+
+TPM allows remote Attestation that a compute node that has performed a 'measured boot', based on a root of trust from the firmware up to a running kernel. In turn you can then run a container / vm workload on that infrastructure knowing that
+the boot cycle  has not been tampered with, in the form of a rootkit or firmware malware.
+
+Other interesting use cases are password LUKS encryption (secret is stored in
+the TPM). Embedded IoT Security. [Network access control](https://trustedcomputinggroup.org/work-groups/trusted-network-communications/) and [blockchain](http://connection.mit.edu/wp-content/uploads/sites/29/2014/12/Anonymous-Identities-for-Permissioned-Blockchains2.pdf)
+
+For a more in depth overview on TPM technology, [WiKipedia](https://en.wikipedia.org/wiki/Trusted_Platform_Module) gives a
+comprehensive run down.
+
+# Getting started
 
 First off, you of course need a TPM 2.0 chip on your servers / laptop motherboard.
 However, if you don't have one, then go to the bottom of this post where you
@@ -143,15 +164,20 @@ this will:
 TPM2 Simulator
 --------------
 
-For those without a TPM2, a simulator can be used. This currently uses CentOS7.5
+For those without a TPM2 Hardware Chip, a TPM2 simulator can be used.
+
+This currently based on CentOS7.5
 
 As far as TPM2 functionality, CentOS7.5 is identical to RHEL 7.5.
 
-Simply clone my [ansible-tpm-simulator
-repository](https://github.com/lukehinds/ansible-tpm-simulator) and the easiest way is to use Vagrant with the
+Simply clone my [ansible-tpm-simulator](https://github.com/lukehinds/ansible-tpm-simulator)
+repository and use Vagrant with the
 `Vagrantfile` containing an ansible provision call , which runs the
 `tpm2_simulator` role. This will then install all of the required dependencies
 and build the IBM TPM Simulator.
+
+If you don't want to use Vagrant, just call the role directly using the
+included `playbook.yml`
 
 After this, `vagrant ssh` into the new instance, become root `sudo su -` and
 start the TPM server:
