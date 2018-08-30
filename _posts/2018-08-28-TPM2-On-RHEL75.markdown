@@ -1,0 +1,192 @@
+---
+layout: post
+title: Trusted Platform Module 2.0 on RHEL 7.5
+---
+
+Support for TPM 2.0 is now available in RHEL 7.5.
+
+What follows is a very basic set of steps to getting started on the TPM 2.0
+tools. This is really catered towards developers wanting to get started or
+anyone curious around TPM technology.
+
+I will make a follow up post with enabling Intel TXT / trusted boot in RHEL 7.5.
+
+For an overview on TPM technology, [WiKiPedia](https://en.wikipedia.org/wiki/Trusted_Platform_Module) gives a decent run down.
+
+First off, you of course need a TPM 2.0 chip on your servers / laptop motherboard.
+However, if you don't have one, then go to the bottom of this post where you
+can instead  use a software simulator set up with an ansible role I put
+together.
+
+Let's look at getting set up with a hardware chip first.
+
+Enable a Hardware TPM
+---------------------
+
+Most TPM chips require enabling in the BIOS first. How this is achieved
+is vendor independent as each has a different BIOS GUI layout,
+but typically it is very simple.
+
+On the Dell Server R630 I used, it was a simple toggle:
+
+![tpm-bios](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/tpm-bios.png)
+
+Once your chip is active in BIOS, the following check validates it's picked up
+by the Kernel.
+
+```
+# dmesg | grep -i tpm                                          
+[0.000000] ACPI: SSDT 000000007b6b9000 003A7 (v02 DELL   Tpm2Tabl 00001000 INTL 20121114)
+[0.000000] ACPI: TPM2 000000007b6b8000 00038 (v04 DELL   EDK2     00000002      01000013)
+[1.197420] tpm_tis MSFT0101:00: 2.0 TPM (device-id 0xFE, rev-id 2)
+
+```
+
+If you see something similar to the above, you're good to go. You should also see
+a new device `/dev/tpm0`
+
+Now let's install some needed userland tools including the software stack (tss)
+and a resource manager (abrmd)
+
+```
+sudo yum install tpm2-tools tpm2-abrmd tpm2-tss
+```
+
+Enable the resource manager tool (to provide an interface to the TPM)
+
+```
+sudo systemctl enable tpm2-abrmd.service  
+```
+
+Start the resource manager service
+
+```
+sudo systemctl start tpm2-abrmd.service  
+```
+
+Ensure its functioning OK:
+
+```
+# sudo systemctl status tpm2-abrmd.service
+● tpm2-abrmd.service - TPM2 Access Broker and Resource Management Daemon
+   Loaded: loaded (/usr/lib/systemd/system/tpm2-abrmd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2018-08-28 15:35:34 BST; 2min 22s ago
+ Main PID: 12813 (tpm2-abrmd)
+    Tasks: 6
+   CGroup: /system.slice/tpm2-abrmd.service
+           └─12813 /usr/sbin/tpm2-abrmd
+
+Aug 28 15:35:34 nfvsdn-04 systemd[1]: Starting TPM2 Access Broker and Resource Management Daemon...
+Aug 28 15:35:34 nfvsdn-04 systemd[1]: Started TPM2 Access Broker and Resource Management Daemon.
+
+```
+
+Now lets perform a test to look at the Platform Configuration Registers (PCRs) currently stored in the TPM (this will be a long list, so I will snip it!)
+
+```
+tpm2_pcrlist                                                 
+sha1 :
+ 0  : 792d27eb9d24376c86ee513b882f653aa1aa4351
+ 1  : d36f4df70c46affaebb3db50da4e7d87d4894efa
+ 2  : b2a83b0ebf2f8374299a5b2bdfc31ea955ad7236
+ 3  : b2a83b0ebf2f8374299a5b2bdfc31ea955ad7236
+ 4  : b2a83b0ebf2f8374299a5b2bdfc31ea955ad7236
+ 5  : 55de42abdf43ba9da890ba14c8a583ff64c83148
+ 6  : b2a83b0ebf2f8374299a5b2bdfc31ea955ad7236
+ <snip>
+```
+
+You can now take ownership of the TPM
+
+To take ownership with "ownerpass" as owner password, "endorsepass" as
+endorsement password, "lockpass" as lockout password:
+
+```
+$ tpm2_takeownership -o ownerpass -e endorsepass -l lockpass
+```
+
+Further Examples
+----------------
+
+Now are TPM is active, we can start using the tools. Every operation here will
+happen within the sealed TPM unit.
+
+**Generate random number (returned as octets)**
+
+`tpm2_getrandom 10`
+
+*Example:*
+
+```
+# tpm2_getrandom 10
+0x07 0xC9 0x6A 0x65 0x6D 0x51 0x01 0x7C 0x57 0x1A
+```
+
+**Create an Endorsement Key**
+
+`# tpm2_getpubek -H 0x81010000 -g 0x01 -f ek.pub`
+
+this will:
+* generate a 2048 RSA (0x01) key pair
+* store it in the NVM with handle 0x81010000
+* export the public part in ek.pub
+
+**Create an Attestation Identity Key**
+
+`# tpm2_getpubak -E 0x81010000 -k 0x81010010 -f aik.pub -n aik.name`
+
+this will:
+* generates a 2048 RSA key pair using the EK with handle 0x81010000
+* store it in the NVM with handle 0x81010010
+* export the public part in ak.pub
+
+TPM2 Simulator
+--------------
+
+For those without a TPM2, a simulator can be used. This currently uses CentOS7.5
+
+As far as TPM2 functionality, CentOS7.5 is identical to RHEL 7.5.
+
+Simply clone my [ansible-tpm-simulator
+repository](https://github.com/lukehinds/ansible-tpm-simulator) and the easiest way is to use Vagrant with the
+`Vagrantfile` containing an ansible provision call , which runs the
+`tpm2_simulator` role. This will then install all of the required dependencies
+and build the IBM TPM Simulator.
+
+After this, `vagrant ssh` into the new instance, become root `sudo su -` and
+start the TPM server:
+
+```
+[root@tpm2-simulator src]# /root/ibmtpm974/src/tpm_server &
+TPM command server listening on port 2321
+Platform server listening on port 2322
+```
+
+Enable the resource manager tool (to provide an interface to the TPM)
+
+```
+sudo systemctl enable tpm2-abrmd.service  
+```
+
+Start the resource manager service
+
+```
+sudo systemctl start tpm2-abrmd.service  
+```
+
+Perform a PCR list to verify all has worked OK:
+
+```
+[root@tpm2-simulator src]# tpm2_pcrlist                                                 
+sha1 :
+ 0  : 792d27eb9d24376c86ee513b882f653aa1aa4351
+ 1  : d36f4df70c46affaebb3db50da4e7d87d4894efa
+ 2  : b2a83b0ebf2f8374299a5b2bdfc31ea955ad7236
+ 3  : b2a83b0ebf2f8374299a5b2bdfc31ea955ad7236
+ 4  : b2a83b0ebf2f8374299a5b2bdfc31ea955ad7236
+ 5  : 55de42abdf43ba9da890ba14c8a583ff64c83148
+ 6  : b2a83b0ebf2f8374299a5b2bdfc31ea955ad7236
+ <snip>
+```
+
+When I have time, I will also containerize the above.
