@@ -21,10 +21,17 @@ The objects themselves could be firmware, boot loaders, kernels,
 config files, blobs / binaries , images (containers / VM's) etc.
 
 It is especially useful when it comes to trusting infrastructure. One use case
-for a TPM is trusting a cloud infrastructure hosted outside of your own premise
+for a TPM is trusting a cloud infrastructure hosted outside of your own premise. This is known
+as 'Remote Attestation'.
 
-TPM allows remote Attestation that a compute node that has performed a 'measured boot', based on a root of trust from the firmware up to a running kernel. In turn you can then run a container / vm workload on that infrastructure knowing that
-the boot cycle  has not been tampered with (in the form of a rootkit or firmware malware).
+TPM allows Remote Attestation of a compute node having performed a 'measured boot', based on a root of
+trust from the firmware up to a running kernel. An event log of the trusted boot process is cryptographically signed by a private key sealed within the TPM.
+This event log can then be shared publically and attested as being
+tamper free, via the certicate trust to the TPM itself.
+
+In turn you can then run a container / vm workload on
+that infrastructure knowing that the boot cycle has not been tampered with (in the form of a rootkit or firmware malware), even if the hardware is outside of your own
+organization.
 
 Other interesting use cases are password [passphrase'less LUKS encryption](https://blog.dowhile0.org/2017/10/18/automatic-luks-volumes-unlocking-using-a-tpm2-chip/). Embedded IoT Security. [Network access control](https://trustedcomputinggroup.org/work-groups/trusted-network-communications/) and [blockchain](http://connection.mit.edu/wp-content/uploads/sites/29/2014/12/Anonymous-Identities-for-Permissioned-Blockchains2.pdf)
 
