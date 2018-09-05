@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Trusted Platform Module 2.0 on RHEL 7.5
+title: Intel TXT on RHEL 7.5
 ---
 
 Support for TPM 2.0 is now available in RHEL 7.5.
