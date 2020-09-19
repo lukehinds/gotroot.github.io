@@ -36,13 +36,13 @@ The last tough section was on the Cam High Road. I had not slept for around 40 h
 
 Eventually the cam high road turned to trail again (a few last wet bogs for my bashed up body to contend with) and I saw Hawes in the valley down before me. As I made my way towards the town a few people met me. “Hey are you Luke?” , yes I replied, surprised that people would be interested in a mid pack runner hobbling in. I received pats on the back and congrats.
 
-![](spine-finish.jpg#center)
+![finish](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/spine-finish.jpg)
 
 I made my way towards the finish on the high street and walked into a heroes welcome. This is one of the great things about the Spine. Of course the elite folks get followed closely, but everyone who comes in gets streamed live on Facebook and giving a mini interview like your someone important. When you hit the finish line, everyone knows who you are from the tracker, and so you get lots of first name based congrats holla’ed out at you. Everyone is a hero on the Spine, the elite speed goats coming in a day before everyone else, and the back marker coming in last. Equal sincere grats are given to all.
 
 I made my way to see the Medics to find out I had Cellulitis in my right lower leg and would need a course of antibiotics. It was at this point the whole lower leg locked up and started to swell. Its almost like it knew we were finally done and so shut up shop for the day My toes were also starting to go an angry colour of red and black. I could see it was going to be a fair while before I could run again, but I was OK with that. I had just done plenty of running and was feeling runned out.
 
-![](exile.jpg#center)
+![exile](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/exile.jpg)
 
 I got myself to the hotel and slept for 10 hours, woke up and ate a veggie burger from the Hawes pizza shop and then went down for another 7 hours.
 Summary
