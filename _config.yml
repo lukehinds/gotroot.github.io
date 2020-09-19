@@ -12,10 +12,8 @@ email: lukehinds@gmail.com
 #write html inside the double quotes to display in jumbotron
 description: "<h1>Luke Hinds</h1><h3>Security, clouds, containers and code.</h3>"
 
-
-
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://lukehinds.github.io" # the base hostname & protocol for your site
+url: "http://gotroot.io" # the base hostname & protocol for your site
 twitter_username: lukeahinds
 github_username:  lukehinds
 google_analytics: "UA-60372167-2"
