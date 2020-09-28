@@ -62,7 +62,7 @@ HABCDEFGH: fe65b452f05c006bee04415be7a53030dbcb16040bfd1eb19b3b02f95b4d44d7
 
 Let’s say we now want to verify data segment `HD`. instead of requiring every data segment, we only need the leafs of `HEFGH`, `HAB` and `HC` and the root `HABCDEFGH`.
 
-![merkle](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/merkle-tree.jpg)
+![merkle](https://raw.githubusercontent.com/lukehinds/lukehinds.github.io/master/img/merkle-tree-tx.jpg)
 
 Lets start by grabbing `HD` the segment we wish to verify
 
